@@ -48,7 +48,7 @@ export default function Register() {
   //NOTE - Display toastMessage
   const toastMessage = (msg) => {
     toast.success(msg, {
-      position: "top-center",
+      position: "top-center ",
       autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
@@ -63,7 +63,7 @@ export default function Register() {
 
   return (
     <>
-      <div className=" container my-3 ">
+      <div className=" container my-3">
         <div className="row">
           <div className={`${styles.card}  card text-white `}>
 

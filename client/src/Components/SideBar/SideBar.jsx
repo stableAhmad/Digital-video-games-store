@@ -43,7 +43,7 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/components" activeClassName="active" className={styles.sidebarLink}>
+            <NavLink to="/PopularNow" activeClassName="active" className={styles.sidebarLink}>
               <FaGem className={styles.sidebarIcon} />
               {!showIconsOnly && <span className={styles.sidebarText}>Components</span>}
             </NavLink>

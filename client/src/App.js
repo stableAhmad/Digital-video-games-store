@@ -15,6 +15,7 @@ import NotFound from "./Components/NotFound/NotFound";
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import PopularNow from "./Components/PopularNow/PopularNow";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       { path: "/cart", element: <Cart /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/PopularNow", element: <PopularNow /> },
       { path: "*", element: <NotFound /> },
     ]
   }])

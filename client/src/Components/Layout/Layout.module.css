@@ -1,13 +1,10 @@
-.Layout {
+.layout {
   background-image: url("../../../public/empty-dark-room-modern-futuristic-sci-fi-background-3d-illustration.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  height: 100%;
-  
 }
-
 
 .overlay {
   position: absolute;
@@ -16,5 +13,10 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  /* Set the opacity value here */
+}
+
+
+
+.contentContainer {
+  z-index: 1;
 }
