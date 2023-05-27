@@ -1,10 +1,16 @@
 const express = require('express')
-const mongoDB = require('./mongo')
+const mongoDB = require('./api/mongo')
 
 
 const app = express()
 const PORT_NUMBER = 5000
+let dbClient = null
 
+async function pre(){
+	dbClient = await mongoDB.connect()
+}
+
+pre()
 
 app.get('/', (req, res)=>{
 
