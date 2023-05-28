@@ -1,12 +1,15 @@
 import React from 'react'
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import styles from '../PopularNow/PopularNow.module.css';
 const gameSlides = [
     {
         mainImage: 'https://i.ytimg.com/vi/4uP2MyUL49s/maxresdefault.jpg',
         legend: 'Cats',
         title: 'Stray',
         description:
-            'Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home.',
+            'VALORANT is a character-based 5v5 tactical shooter set on the global stage. Outwit, outplay, and outshine your competition with tactical abilities, precise gunplay, and adaptive teamwork.',
+
         smallImages: [
             'https://cdn.mos.cms.futurecdn.net/8oa8SS9q2TsBrvGcHsqpbc.jpg',
             'https://i.ytimg.com/vi/4uP2MyUL49s/maxresdefault.jpg',
@@ -28,12 +31,15 @@ const gameSlides = [
         legend: 'Battle Royale',
         title: 'Fortnite',
         description:
-            'Create, play, and battle with friends for free in Fortnite. Be the last player standing in Battle Royale and Zero Build, experience a concert or live event, or discover over a million creator-made games, including racing, parkour, zombie survival, and more. Find it all in Fortnite!',
+            'VALORANT is a character-based 5v5 tactical shooter set on the global stage. Outwit, outplay, and outshine your competition with tactical abilities, precise gunplay, and adaptive teamwork.',
+
         smallImages: [
             'https://images.ctfassets.net/p0qf7j048i0q/22CA69A7D1C3463E86938EBD6DB7F15D/86cd3407b331765631a4a0260e2aeb52/070518_7_Things_I_Tell_Parents_of_Kids_With_ADHD_and_Social_Skills_Issues_About_Fortnite.jpg?w=3840&q=75&h=3840&fm=webp',
             'https://imageio.forbes.com/specials-images/imageserve/604f6b5c00178ba3ac7dc066/Fortnite/960x0.jpg?format=jpg&width=960',
         ],
     },
+
+
 ];
 
 
@@ -41,23 +47,25 @@ export default function PopularNow() {
     return (
         <>
 
-            <div className=" container-fluid bg-info w-75 mx-auto">
-                <div className="row ">
 
-                    {gameSlides.map((game) => (
-                        <div className="col-md-4">
-                            <div className="card w-100 bg-danger rounded overflow-hidden">
-                                <img src={`${game.mainImage}`} alt="" />
+            <div className="row ">
 
-                            </div>
-                        </div>
-                    ))}
-
-
-
-
-                </div>
+                {gameSlides.map((game) => (
+                    <div className="col-sm-12 col-md-6 mb-5 col-sm">
+                        <Card className={`${styles.PopCard} h-100 bg-transparent text-white`}>
+                            <Card.Img variant="top" src={game.mainImage} />
+                            <Card.Body>
+                                <Card.Title>{game.title}</Card.Title>
+                                <Card.Text className='mb-5'>
+                                    {game.description}
+                                </Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                ))}
             </div>
+
 
         </>
     )

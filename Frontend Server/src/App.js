@@ -29,6 +29,7 @@ function App() {
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/PopularNow", element: <PopularNow /> },
+
       { path: "*", element: <NotFound /> },
     ]
   }])

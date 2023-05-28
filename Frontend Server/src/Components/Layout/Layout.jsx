@@ -10,10 +10,10 @@ export default function Layout() {
       <div className={`${styles.overlay}`}></div>
       <div className="row">
         <NavBar />
-        <div className={`col-auto p-0`}>
+        <div className={`col-auto p-0 `}>
           <SideBar />
         </div>
-        <div className={`col ${styles.contentContainer} `}>
+        <div className={` col col-md-9    ${styles.contentContainer} `}>
           <Outlet />
         </div>
       </div>
