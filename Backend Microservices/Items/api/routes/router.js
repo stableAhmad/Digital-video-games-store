@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const itemModel = require('../models/item-model')
+const cacheClient = require('../utils/items-cache')
 
 
 
@@ -8,8 +9,16 @@ const itemModel = require('../models/item-model')
 //get routes
 
 router.get('/get/all/full', async  (req, res) => {     //retrieving all the items with (all) of their attributes
-  const back =  await itemModel.findAllFull()
-  res.send(back)
+  const cacheResult  = await cacheClient.read("full")
+  if(! cacheResult){
+    console.log("cache miss")
+    const back = await itemModel.findAllFull()
+    cacheClient.write("full", back)
+    res.send(back)
+  }else{
+    console.log("cache hit")
+    res.send(cacheResult)
+  }
 })
 
 router.get('/get/all', async (req, res) => {        //retrieving all the items with (part) of their attributes
@@ -20,8 +29,17 @@ router.get('/get/all', async (req, res) => {        //retrieving all the items w
 
 
 router.get('/get/bestSellers', async (req, res) => {    //retrieving all the items sorted by sold_count
-  const back = await itemModel.findBestSellers()
-  res.send(back)
+  const cacheResult = await cacheClient.read("bestSellers")
+  if(!cacheResult){
+    console.log("cache miss")
+    const back = await itemModel.findBestSellers()
+    cacheClient.write("bestSellers", back)
+    res.send(back)
+  }else{
+      console.log("cache hit")
+      res.send(cacheResult)
+  }
+  
 })
 
 router.get('/get/:id', async (req, res) => {            //getting an item by id

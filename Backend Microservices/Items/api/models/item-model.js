@@ -1,6 +1,8 @@
 const mongoDB = require('../mongo.js')
 const { ObjectId } = require('mongodb')
 
+const bestSellersMax = 40
+
 let DBClient = {client : "temp"}
 
 
@@ -73,7 +75,11 @@ async function findBestSellers(){
     try{
         let res = await findAllFull(DBClient)
         res.sort((a, b) => b.sold_count - a.sold_count)
-        return res
+        if (res.length > 50) {
+              return res.slice(0, 50)
+        } else {
+            return res; 
+        }
     }catch(err){
       console.log(err.message)
     }
