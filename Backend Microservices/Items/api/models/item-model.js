@@ -1,12 +1,10 @@
 const mongoDB = require('../mongo.js')
+const { ObjectId } = require('mongodb')
 
 let DBClient = {client : "temp"}
 
 
-
-const projection = {"title":0, "price":0, "developer":0, "publisher":0,"sold_count":0, "release_date":0,
-                     "available":0, "off":0, "edition":0, "active":0, "description" :0 ,"requirements":0,
-                      "guide":0, "platform":0,"genre":0, "currency":0 , "language":0, "age":0 }
+let projection = { }
 
 
 function resetProjection(){
@@ -14,12 +12,14 @@ function resetProjection(){
       projection[prop] = 0;
     }
 }
+
 async function findByID(id){
 
   try{
 
-      const query = { _id: ObjectId(id) }
-      const result = await DBClient.client.database.collection('item').findOne(query)
+      const query = { _id: new ObjectId(id) }
+      const result = await DBClient.client.db("items").collection('item').findOne(query)
+
       return result;
 
   }catch(err){
@@ -50,13 +50,14 @@ async function findAllFull(){
 async function findAllPart(attributes){
 
   try{
-      resetProjection()
-      attributes.forEach(x => {
-        if(projection.hasOwnProperty(x)){
+    resetProjection()
+      attributes.forEach(x => {   
             projection[x] = 1
-        }
       })
-      const result = await DBClient.client.database.collection('item').find({}, projection).toArray()
+ 
+      projection._id = 1
+      console.log(projection)
+      const result = await DBClient.client.db("items").collection('item').find({}, {projection : projection}).toArray()
       return result;
 
   }catch(err){

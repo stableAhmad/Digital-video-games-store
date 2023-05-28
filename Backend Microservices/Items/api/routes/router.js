@@ -12,8 +12,9 @@ router.get('/get/all/full', async  (req, res) => {     //retrieving all the item
   res.send(back)
 })
 
-router.get('/get/all/*', async (req, res) => {        //retrieving all the items with (part) of their attributes
-  const back = await itemModel.findAllPart(Object.values(req.params))
+router.get('/get/all', async (req, res) => {        //retrieving all the items with (part) of their attributes
+  console.log(Object.keys(req.query))
+  const back = await itemModel.findAllPart(Object.keys(req.query))
   res.send(back)
 })
 

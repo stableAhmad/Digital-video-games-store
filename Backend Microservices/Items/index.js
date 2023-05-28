@@ -46,8 +46,15 @@ async function pre(){
 pre()
 
 
+
+
+app.listen(PORT_NUMBER, ()=>{
+	console.log("the item service is listening on port "+PORT_NUMBER)
+})
+
+
+
 app.on('close', async () => {
-	console.log("one close call")
   if(dbClient){
   	const res = await mongoDB.disconnect()
   	if(res){
@@ -57,8 +64,4 @@ app.on('close', async () => {
   	}
   }
 
-})
-
-app.listen(PORT_NUMBER, ()=>{
-	console.log("the item service is listening on port "+PORT_NUMBER)
 })
