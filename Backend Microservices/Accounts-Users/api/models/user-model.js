@@ -184,9 +184,7 @@ module.exports = {
         maxLength: 50
       },
       password: {
-        type: 'string',
-        minLength: 6,
-        maxLength: 30
+        type: 'string'
       }
     },
     required: [
