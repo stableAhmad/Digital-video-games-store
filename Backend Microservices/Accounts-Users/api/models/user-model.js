@@ -65,6 +65,10 @@ async function remove(email) {
 async function add(newUser) {
   try {
     const usersCollection = DBClient.client.db("users").collection("user");
+    const exists = await readOne(newUser.email);
+    if(exists){
+      return false;
+    }
     await usersCollection.insertOne(newUser);
     return true; // Indicate that the user was successfully added
   } catch (error) {

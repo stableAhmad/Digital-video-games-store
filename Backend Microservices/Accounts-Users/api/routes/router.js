@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('../models/user-model');
 
+
 // Get routes
 
 router.get('/', async (req, res) => {
   try {
-    console.log("Retrieving all items");
+    console.log("Retrieving all items database");
     const users = await userModel.read();
     res.json(users);
   } catch (error) {
