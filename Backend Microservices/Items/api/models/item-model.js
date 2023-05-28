@@ -1,5 +1,8 @@
 const mongoDB = require('../mongo.js')
 
+let DBClient = {client : "temp"}
+
+
 
 const projection = {"title":0, "price":0, "developer":0, "publisher":0,"sold_count":0, "release_date":0,
                      "available":0, "off":0, "edition":0, "active":0, "description" :0 ,"requirements":0,
@@ -11,12 +14,12 @@ function resetProjection(){
       projection[prop] = 0;
     }
 }
-async function findByID(DBClient, id){
+async function findByID(id){
 
   try{
 
       const query = { _id: ObjectId(id) }
-      const result = await DBClient.database.collection('item').findOne(query)
+      const result = await DBClient.client.database.collection('item').findOne(query)
       return result;
 
   }catch(err){
@@ -28,11 +31,11 @@ async function findByID(DBClient, id){
 
 }
 
-async function findAllFull(DBClient){
+async function findAllFull(){
 
   try{
 
-      const result = await DBClient.database.collection('item').find().toArray()
+      const result = await DBClient.client.db("items").collection('item').find().toArray()
       return result;
 
   }catch(err){
@@ -44,7 +47,7 @@ async function findAllFull(DBClient){
 
 }
 
-async function findAllPart(DBClient, attributes){
+async function findAllPart(attributes){
 
   try{
       resetProjection()
@@ -53,7 +56,7 @@ async function findAllPart(DBClient, attributes){
             projection[x] = 1
         }
       })
-      const result = await DBClient.database.collection('item').find({}, projection).toArray()
+      const result = await DBClient.client.database.collection('item').find({}, projection).toArray()
       return result;
 
   }catch(err){
@@ -63,9 +66,9 @@ async function findAllPart(DBClient, attributes){
 
   }
 
-}
+} 
 
-async function findBestSellers(DBClient){
+async function findBestSellers(){
     try{
         let res = await findAllFull(DBClient)
         res.sort((a, b) => b.sold_count - a.sold_count)
@@ -77,23 +80,32 @@ async function findBestSellers(DBClient){
 
 
 
+module.exports = {
+  DBClient:DBClient,
+  findByID: findByID,
+  findAllFull:findAllFull,
+  findAllPart:findAllPart,
+  findBestSellers:findBestSellers
+}
+
+
 //missing website authorization
 
 
-async function update(DBClient){
+async function update(){
 
 
 }
 
-async function remove(DBClient){
+async function remove(){
 
 }
 
-async function add(DBClient){
+async function add(){
 
 }
 
-async function validateItem(DBClient){
+async function validateItem(){
 
 }
 

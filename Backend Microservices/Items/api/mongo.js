@@ -46,7 +46,7 @@ async function disconnect(){
 module.exports = {
   connect: connect,
   disconnect:disconnect
-};
+}
 
 
 
