@@ -1,12 +1,12 @@
-##API Guide
+## API Guide
 
 
-###Table of Contents
+### Table of Contents
 
-*Get all items with full attributes
-*Get all items with partial attributes
-*Get best selling items
-*Get item by ID
+* Get all items with full attributes
+* Get all items with partial attributes
+* Get best selling items
+* Get item by ID
 
 ###Get all items with full attributes
 
