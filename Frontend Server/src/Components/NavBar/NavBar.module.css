@@ -24,8 +24,11 @@
 
 }
 
-.nav2 {
+.navBarStyle {
+    background-color: rgba(0, 0, 0, 0.368);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(7px);
+
 }
 
 

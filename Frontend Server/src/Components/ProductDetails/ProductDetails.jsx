@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Styles from './ProductDetails.module.css';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { gamesList } from '../Games/Games';
+import { CartContext } from '../../Context/CartContext';
 
 // display a toast message when the user clicks on the Add to cart button
 const handleGames = (msg) => {
@@ -33,6 +34,10 @@ function ProductDetails() {
   // Find the game object with the matching id from the gamesList array
   const game = gamesList.find((game) => game.id === parseInt(id));
 
+
+  //NOTE - Initialize useContext
+
+  let { createCart } = useContext(CartContext)
   return (
     <>
       <div className="container">
@@ -44,7 +49,10 @@ function ProductDetails() {
             <h1 className="text-white">{game.title}</h1>
             <h2 className="text-white">{game.price}</h2>
             <p className="text-white">{game.description}</p>
-            <Button variant="primary" onClick={() => handleGames(`${game.title} added to cart`)}>Add to cart</Button>
+            <Button variant="" onClick={() => {
+              handleGames(`${game.title} added to cart`)
+              createCart(game.id)
+            }}>Add to cart</Button>
           </div>
         </div>
       </div>

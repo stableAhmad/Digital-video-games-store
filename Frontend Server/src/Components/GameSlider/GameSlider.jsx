@@ -88,13 +88,16 @@ export default function GameSlider() {
         <div className="col-sm-auto col-md-9 mb-3">
           <Carousel
             className={styles.mainSlide}
-            showThumbs={false}
             autoPlay={true}
             infiniteLoop={true}
             interval={3000}
             useKeyboardArrows={true}
             onChange={handleSlideChange}
             swipeScrollTolerance={true}
+            showArrows={false}
+            showStatus={false}
+            stopOnHover={true}
+            transitionTime={1000}
           >
             {gameSlides.map((slide, index) => (
               <div className={`container-fluid ${styles.slideContainer}`} key={index}>

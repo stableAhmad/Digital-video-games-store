@@ -11,9 +11,10 @@
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(7px);
 }
+
 .sidebar.collapsed {
     width: 70px;
-  }
+}
 
 .sidebarHeader {
     display: flex;
@@ -25,7 +26,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    
+
 }
 
 .sidebarToggleIcon {
@@ -51,7 +52,7 @@
     color: #ffffff;
     text-decoration: none;
     padding: 10px 0;
-    
+
 }
 
 .sidebarIcon {
@@ -61,7 +62,7 @@
 .sidebarText {
     font-size: 14px;
     transition: 2s all;
-    
+
 }
 
 .sidebarFooter {
@@ -73,5 +74,5 @@
     align-items: center;
     color: #ffffff;
     text-decoration: none;
-    
+
 }
