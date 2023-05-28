@@ -59,7 +59,7 @@ GET /get/bestSellers
 Returns an array of objects, where each object represents an item in the database. The objects are sorted in descending order based on the number of times they have been sold.
 
 
-###Get item by ID
+### Get item by ID
 
 Retrieves an item in the database by its ID.
 
