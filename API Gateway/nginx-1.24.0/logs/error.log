@@ -1,0 +1,14 @@
+2023/05/28 18:34:26 [error] 16568#9996: *2 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/05/28 18:40:27 [notice] 21836#21824: signal process started
+2023/05/28 18:40:27 [error] 21836#21824: OpenEvent("Global\ngx_quit_22468") failed (2: The system cannot find the file specified)
+2023/05/28 18:41:42 [notice] 15280#14964: signal process started
+2023/05/28 18:41:42 [error] 15280#14964: OpenEvent("Global\ngx_quit_22468") failed (2: The system cannot find the file specified)
+2023/05/28 18:42:45 [notice] 19108#19840: signal process started
+2023/05/28 18:47:02 [notice] 15060#2964: signal process started
+2023/05/28 18:47:02 [error] 15060#2964: CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2023/05/28 18:48:02 [notice] 20112#22068: signal process started
+2023/05/28 18:48:02 [error] 20112#22068: CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2023/05/28 18:50:16 [notice] 17560#16964: signal process started
+2023/05/28 18:50:16 [error] 17560#16964: CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2023/05/28 18:54:58 [error] 16568#9996: *9 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/05/28 18:58:00 [notice] 13964#17552: signal process started
