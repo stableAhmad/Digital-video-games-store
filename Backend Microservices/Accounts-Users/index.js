@@ -9,7 +9,7 @@ let dbClient = null;
 
 app.use(express.json());
 
-// Connect to the database and set up routes
+
 async function initializeApp() {
   try {
     dbClient = await mongoDB.connect();
@@ -32,10 +32,10 @@ async function initializeApp() {
   }
 }
 
-// Initialize the application
+
 initializeApp();
 
-// Close the database connection on app close
+
 app.on('close', async () => {
   console.log("Closing Database connection");
   if (dbClient) {
