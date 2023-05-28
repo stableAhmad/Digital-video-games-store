@@ -22,3 +22,51 @@
 2023/05/28 20:16:28 [notice] 20836#1908: signal process started
 2023/05/28 20:39:11 [notice] 7020#17312: signal process started
 2023/05/28 20:39:11 [error] 7020#17312: CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\ngnix reverse proxy/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2023/05/28 20:46:27 [emerg] 18656#16488: no "events" section in configuration
+2023/05/28 20:48:49 [notice] 20720#11092: signal process started
+2023/05/28 20:49:13 [notice] 10256#15916: signal process started
+2023/05/28 20:49:17 [error] 15744#14228: *2 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://[::1]:5000/", host: "localhost:4000"
+2023/05/28 20:49:18 [error] 15744#14228: *2 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "localhost:4000"
+2023/05/28 20:49:18 [error] 15744#14228: *2 no live upstreams while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "http://localhost/favicon.ico", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 20:49:26 [error] 15744#14228: *2 no live upstreams while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://localhost/", host: "localhost:4000"
+2023/05/28 20:49:26 [error] 15744#14228: *2 no live upstreams while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "http://localhost/favicon.ico", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 20:51:46 [error] 15744#14228: *5 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "localhost:4000"
+2023/05/28 20:51:47 [error] 15744#14228: *5 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://[::1]:5000/", host: "localhost:4000"
+2023/05/28 20:51:48 [error] 15744#14228: *5 no live upstreams while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "http://localhost/favicon.ico", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 21:02:09 [error] 15744#14228: *8 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "localhost:4000"
+2023/05/28 21:02:10 [error] 15744#14228: *8 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "http://[::1]:5000/", host: "localhost:4000"
+2023/05/28 21:02:11 [error] 15744#14228: *8 no live upstreams while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", upstream: "http://localhost/favicon.ico", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 21:13:59 [notice] 14020#19392: signal process started
+2023/05/28 21:15:07 [notice] 22088#17044: signal process started
+2023/05/28 21:15:12 [error] 1120#2324: *12 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 21:15:12 [error] 1120#2324: *12 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 21:22:15 [error] 1120#2324: *13 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 21:22:16 [error] 1120#2324: *13 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 21:31:00 [error] 1120#2324: *14 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 21:31:00 [error] 1120#2324: *14 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 21:31:25 [notice] 3704#21084: signal process started
+2023/05/28 21:31:30 [error] 15832#20760: *15 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 21:31:30 [error] 15832#20760: *15 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 21:33:03 [error] 15832#20760: *16 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 21:33:04 [error] 15832#20760: *16 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 22:03:53 [notice] 8520#22264: signal process started
+2023/05/28 22:03:57 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:03:57 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 22:03:58 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:03:59 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:03:59 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:03:59 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:04:05 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:04:05 [error] 13796#2284: *17 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 22:13:50 [notice] 13504#19360: signal process started
+2023/05/28 22:20:23 [error] 17108#21868: *18 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:20:23 [error] 17108#21868: *18 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 22:21:24 [error] 17108#21868: *18 no resolver defined to resolve localhost, client: 127.0.0.1, server: localhost, request: "GET /app1/get/all/full HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:28:50 [notice] 19652#13440: signal process started
+2023/05/28 22:29:09 [error] 18704#14348: *19 localhost could not be resolved (3: Host not found), client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:29:28 [error] 18704#14348: *23 localhost could not be resolved (3: Host not found), client: 127.0.0.1, server: localhost, request: "GET /app1/get/all/full HTTP/1.1", host: "localhost:4000"
+2023/05/28 22:31:35 [warn] 9456#13932: server name "http://127.0.0.1" has suspicious symbols in A:\i\Coding\Projects\level-up-game-market-place\API Gateway\ngnix reverse proxy/conf/nginx.conf:27
+2023/05/28 22:31:42 [warn] 7340#17764: server name "http://127.0.0.1" has suspicious symbols in A:\i\Coding\Projects\level-up-game-market-place\API Gateway\Ngnix Reverse Proxy/conf/nginx.conf:27
+2023/05/28 22:31:42 [notice] 7340#17764: signal process started
+2023/05/28 22:31:42 [warn] 6172#5480: server name "http://127.0.0.1" has suspicious symbols in A:\i\Coding\Projects\level-up-game-market-place\API Gateway\ngnix reverse proxy/conf/nginx.conf:27
+2023/05/28 22:33:35 [notice] 20264#19596: signal process started
