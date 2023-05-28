@@ -1,4 +1,5 @@
 let DBClient = { client: "temp" };
+const bcrypt = require("../utils/encryption");
 
 // Returns all users in the database
 async function read() {
@@ -65,10 +66,8 @@ async function remove(email) {
 async function add(newUser) {
   try {
     const usersCollection = DBClient.client.db("users").collection("user");
-    const exists = await readOne(newUser.email);
-    if(exists){
-      return false;
-    }
+    const passwordHash = await bcrypt.encryptPassword(newUser.password);
+    newUser.password = passwordHash;
     await usersCollection.insertOne(newUser);
     return true; // Indicate that the user was successfully added
   } catch (error) {
@@ -77,11 +76,128 @@ async function add(newUser) {
   }
 }
 
+// Validates a user's credentials
+async function validateUser(email, password){
+  try {
+    const usersCollection = DBClient.client.db("users").collection("user");
+    const user = await usersCollection.findOne({ email });
+    if (user) {
+      const result = await bcrypt.comparePassword(password, user.password);
+      return result;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error.message);
+    return false;
+  }
+}
+
 module.exports = {
-  DBClient:DBClient,
+  DBClient: DBClient,
   read,
   readOne,
   update,
   remove,
   add,
+  validateUser
 };
+
+
+
+/*
+{
+  $jsonSchema: {
+    type: 'object',
+    properties: {
+      firstName: {
+        type: 'string'
+      },
+      lastName: {
+        type: 'string'
+      },
+      phoneNumber: {
+        type: 'object',
+        properties: {
+          countryCode: {
+            type: 'string',
+            'enum': [
+              '+1',
+              '+34',
+              '+86',
+              '+91',
+              '+20',
+              '+55',
+              '+880',
+              '+7',
+              '+33',
+              '+49',
+              '+81',
+              '+82',
+              '+90',
+              '+39',
+              '+48',
+              '+31',
+              '+46',
+              '+47',
+              '+358'
+            ]
+          },
+          number: {
+            type: 'string',
+            minLength: 10,
+            maxLength: 10
+          }
+        },
+        required: [
+          'countryCode',
+          'number'
+        ]
+      },
+      country: {
+        type: 'string',
+        'enum': [
+          'United States',
+          'Spain',
+          'China',
+          'India',
+          'Egypt',
+          'Brazil',
+          'Bangladesh',
+          'Russia',
+          'France',
+          'Germany',
+          'Japan',
+          'South Korea',
+          'Turkey',
+          'Italy',
+          'Poland',
+          'Netherlands',
+          'Sweden',
+          'Norway',
+          'Finland'
+        ]
+      },
+      email: {
+        type: 'string',
+        pattern: '^\\S+@\\S+\\.\\S+$',
+        maxLength: 50
+      },
+      password: {
+        type: 'string',
+        minLength: 6,
+        maxLength: 30
+      }
+    },
+    required: [
+      'firstName',
+      'lastName',
+      'phoneNumber',
+      'country',
+      'email',
+      'password'
+    ]
+  }
+}
+
+*/
