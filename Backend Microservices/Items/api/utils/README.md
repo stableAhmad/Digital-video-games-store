@@ -1,4 +1,4 @@
-#some redis help
+# some redis help
 
 * redis-cli ping
 * redis-cli shutdown
