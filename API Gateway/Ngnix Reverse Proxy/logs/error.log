@@ -12,3 +12,13 @@
 2023/05/28 18:50:16 [error] 17560#16964: CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/logs/nginx.pid" failed (2: The system cannot find the file specified)
 2023/05/28 18:54:58 [error] 16568#9996: *9 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
 2023/05/28 18:58:00 [notice] 13964#17552: signal process started
+2023/05/28 19:22:23 [notice] 19736#17956: signal process started
+2023/05/28 19:22:34 [error] 17788#21824: *1 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8000", referrer: "http://localhost:8000/"
+2023/05/28 19:24:43 [notice] 12332#16408: signal process started
+2023/05/28 19:26:14 [error] 1968#8876: *1 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 19:29:47 [error] 1968#8876: *2 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 19:38:03 [error] 1968#8876: *3 CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\nginx-1.24.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4000", referrer: "http://localhost:4000/"
+2023/05/28 19:42:42 [notice] 18940#19120: signal process started
+2023/05/28 20:16:28 [notice] 20836#1908: signal process started
+2023/05/28 20:39:11 [notice] 7020#17312: signal process started
+2023/05/28 20:39:11 [error] 7020#17312: CreateFile() "A:\i\Coding\Projects\level-up-game-market-place\API Gateway\ngnix reverse proxy/logs/nginx.pid" failed (2: The system cannot find the file specified)
