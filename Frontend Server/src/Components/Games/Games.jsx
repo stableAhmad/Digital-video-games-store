@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Styles from './Games.module.css';
+import { Slide, ToastContainer, toast } from 'react-toastify';
 
 const gamesList = [
   {
@@ -8,7 +9,7 @@ const gamesList = [
     title: 'Little Nightmare 2',
     price: '69$',
     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
-    imageUrl: 'https://www.gamespot.com/a/uploads/scale_landscape/1575/15759911/3797878-little-nightmares-ii.jpg'
+    imageUrl: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81qI1YxMtvlviq6RXG9qXl4C20gGRmxgMsXNiWvpD8rpWwplGcBZnp9Pij1MBpb5UqAg9TfltY6_Kb54moWn0KLAewG5Gw=w1920-h937'
   },
   {
     id: 2,
@@ -103,6 +104,30 @@ const gamesList = [
   },
 ];
 
+
+
+const handleGames = (msg) => {
+  toastMessage(msg);
+}
+
+//NOTE - Display toastMessage
+const toastMessage = (msg) => {
+  toast.success(msg, {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    transition: Slide
+  });
+}
+
+
+
+
 function Games() {
   return (
     <div className="container">
@@ -111,11 +136,13 @@ function Games() {
         {gamesList.map((game) => (
           <div key={game.id} className=" h-100 col-sm-12 col-md-6 col-lg-3  mb-2 ">
             <Card className={` ${Styles.gamecard} overflow-hidden `} >
-              <Card.Img variant="top" className={`${Styles.img} `} style={{height: '10rem', objectFit: 'cover'}} src={game.imageUrl} />
+              <Card.Img variant="top" className={`${Styles.img} `} style={{ height: '10rem', objectFit: 'cover' }} src={game.imageUrl} />
               <Card.Body>
                 <Card.Title className='text-bold'><h6 className='text-main'>{game.title}</h6></Card.Title>
                 <Card.Title ><p>{game.price}</p></Card.Title>
-                <Button variant="info" className={`btn ${Styles.Game} w-100`} >Add +</Button>
+                <Button variant="info" className={`btn ${Styles.Game} w-100`} onClick={() => {
+                  handleGames(`Game Added To Cart`)
+                }} >Add +</Button>
               </Card.Body>
             </Card>
           </div>

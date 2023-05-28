@@ -40,15 +40,15 @@ export default function Register() {
   function handleLogin(values) {
 
     console.log(formik.values);
-    navigate('/Login')
     toastMessage(`Registration Succeeded 👍`)
+    navigate('/Login')
   }
 
 
   //NOTE - Display toastMessage
   const toastMessage = (msg) => {
     toast.success(msg, {
-      position: "top-center ",
+      position: "top-center",
       autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,

@@ -23,8 +23,8 @@ const gameSlides = [
     description:
       'VALORANT is a character-based 5v5 tactical shooter set on the global stage. Outwit, outplay, and outshine your competition with tactical abilities, precise gunplay, and adaptive teamwork.',
     smallImages: [
-      'https://cdn.vox-cdn.com/thumbor/FYUO-naTFiuoBNJ_jTvOmq8XZnw=/0x0:2000x1125/1200x800/filters:focal(906x436:1226x756)/cdn.vox-cdn.com/uploads/chorus_image/image/66423112/FirstLook_Smoke_VALORANT.0.jpg',
-      'https://i.guim.co.uk/img/media/4fcead14348c3eeb2958d4b9dc4a931d93b65b54/58_0_1749_1050/master/1749.jpg?width=465&quality=85&dpr=1&s=none',
+      'https://images.ctfassets.net/p0qf7j048i0q/22CA69A7D1C3463E86938EBD6DB7F15D/86cd3407b331765631a4a0260e2aeb52/070518_7_Things_I_Tell_Parents_of_Kids_With_ADHD_and_Social_Skills_Issues_About_Fortnite.jpg?w=3840&q=75&h=3840&fm=webp',
+      'https://imageio.forbes.com/specials-images/imageserve/604f6b5c00178ba3ac7dc066/Fortnite/960x0.jpg?format=jpg&width=960',
     ],
   },
   {
@@ -39,6 +39,10 @@ const gameSlides = [
     ],
   },
 ];
+
+
+
+
 
 
 export default function GameSlider() {
@@ -72,7 +76,7 @@ export default function GameSlider() {
           >
             {gameSlides.map((slide, index) => (
               <div className={`container-fluid ${styles.slideContainer}`} key={index}>
-                <div className="row">
+                <div className="row ">
                   <div className="col-12">
                     <div className={styles.slideInfo}>
                       {/* Main image in the slider */}
@@ -89,15 +93,18 @@ export default function GameSlider() {
         <div className="col-sm-12 col-md-6 col-lg-3 ">
           <div className={`col-lg-12 ${styles.slideInfo} d-flex flex-column`}>
             {/* Info card */}
-            <div className={`${styles.info} card mb-5 p-4`}>
+            <div className={`${styles.info} card mb-5 p-4 `}>
               <h2>{gameSlides[currentSlide].title}</h2>
-              <p className={styles.description}>{gameSlides[currentSlide].description}</p>
-              <button className={`${styles.Addbtn} btn m-2`}>Add to Cart</button>
+              <p className={styles.description}>{gameSlides[currentSlide].description.split(' ').splice(0, 15).join(' ')}</p>
+              <button className={`${styles.Addbtn} btn m-2  `}>Add to Cart</button>
             </div>
             {/* Images under the card */}
             <div className="d-flex">
               {gameSlides[currentSlide].smallImages.map((image, imageIndex) => (
-                <img src={image} alt={`slide 1`} className={styles.smallImage} key={imageIndex} />
+
+                <img src={image} alt={`slide 1`} className={`${styles.smallImage} `} key={imageIndex} />
+
+
               ))}
             </div>
           </div>

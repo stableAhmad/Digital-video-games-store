@@ -19,8 +19,8 @@
   width: 100%;
   color: #fff;
   background: transparent;
-  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(7px);
+  height: 400px;
 }
 
 h2 {
@@ -63,4 +63,6 @@ h2 {
   width: 50%;
   margin: 5px;
   border-radius: 10px;
+  height: 100%;
+
 }
