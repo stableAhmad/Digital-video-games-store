@@ -49,9 +49,9 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/submenu" activeClassName="active" className={styles.sidebarLink}>
+            <NavLink to="/Games" activeClassName="active" className={styles.sidebarLink}>
               <FaRegLaughWink className={styles.sidebarIcon} />
-              {!showIconsOnly && <span className={styles.sidebarText}>With Suffix</span>}
+              {!showIconsOnly && <span className={styles.sidebarText}>Games</span>}
             </NavLink>
           </li>
           <li>

@@ -3,7 +3,6 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './GameSlider.module.css';
 
-
 //NOTE - GameSlider Array that Represent the games
 const gameSlides = [
   {
@@ -87,7 +86,7 @@ export default function GameSlider() {
           </Carousel>
         </div>
 
-        <div className="col-sm-auto col-md-3">
+        <div className="col-sm-12 col-md-6 col-lg-3 ">
           <div className={`col-lg-12 ${styles.slideInfo} d-flex flex-column`}>
             {/* Info card */}
             <div className={`${styles.info} card mb-5 p-4`}>
