@@ -45,7 +45,7 @@ export default function Sidebar() {
           <li>
             <NavLink to="/PopularNow" activeClassName="active" className={styles.sidebarLink}>
               <FaGem className={styles.sidebarIcon} />
-              {!showIconsOnly && <span className={styles.sidebarText}>Components</span>}
+              {!showIconsOnly && <span className={styles.sidebarText}>Popular Now</span>}
             </NavLink>
           </li>
           <li>

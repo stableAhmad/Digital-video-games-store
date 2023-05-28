@@ -13,9 +13,9 @@ import Register from "./Components/Register/Register";
 import NotFound from "./Components/NotFound/NotFound";
 import Darkmode from 'darkmode-js';
 import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 import PopularNow from "./Components/PopularNow/PopularNow";
+import ProductDetails from "./Components/ProductDetails/ProductDetails";
 
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
     path: "", element: <Layout />, children: [
       { index: true, element: <Home /> },
       { path: "/games", element: <Games /> },
+      { path: "/Product-details/:id", element: <ProductDetails /> },
       { path: "/software", element: <Software /> },
       { path: "/cart", element: <Cart /> },
       { path: "/login", element: <Login /> },
