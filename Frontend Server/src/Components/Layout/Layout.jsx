@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from '../SideBar/SideBar';
 import NavBar from '../NavBar/NavBar';
 import styles from '../Layout/Layout.module.css';
-import DarkMode from '../DarkMode/DarkMode';
 import { CartContext } from '../../Context/CartContext';
 
 export default function Layout() {
@@ -19,7 +18,6 @@ export default function Layout() {
         <div className={`col-auto p-0 `}>
           <SideBar />
 
-          {/* <DarkMode /> */}
 
 
         </div>

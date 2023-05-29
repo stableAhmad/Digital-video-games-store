@@ -8,7 +8,6 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, Navigate } from 'react-router-dom';
-import DarkMode from '../DarkMode/DarkMode';
 import { CartContext } from '../../Context/CartContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -73,8 +72,8 @@ function NavBar() {
                   </>
                 }
               </Form>
-              {/* Dark mode toggle */}
-              <DarkMode />
+              
+
             </Navbar.Collapse>
           </Container>
         </Navbar>

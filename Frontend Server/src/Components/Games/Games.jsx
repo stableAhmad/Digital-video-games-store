@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Styles from './Games.module.css';
@@ -7,6 +7,8 @@ import ProductDetails from '../ProductDetails/ProductDetails';
 import { Link } from "react-router-dom";
 import { CartContext } from '../../Context/CartContext';
 import { Helmet } from "react-helmet";
+
+
 
 
 export const gamesList = [
@@ -117,30 +119,50 @@ export const gamesList = [
 
 
 
-const handleGames = (msg) => {
-  toastMessage(msg);
-}
-
-
-//NOTE - Display toastMessage
-const toastMessage = (msg) => {
-  toast.success(msg, {
-    position: "top-right",
-    autoClose: 1500,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-    transition: Slide
-  });
-}
-
 
 
 
 function Games() {
+
+
+
+  let { getData, gameData } = useContext(CartContext)
+
+
+
+
+
+
+
+
+  const handleGames = (msg) => {
+    toastMessage(msg);
+  }
+
+
+  //NOTE - Display toastMessage
+  const toastMessage = (msg) => {
+    toast.success(msg, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide
+    });
+  }
+
+
+
+
+
+
+
+
+
   const [titleFilter, setTitleFilter] = useState('');
   const [priceFilter, setPriceFilter] = useState({ min: '', max: '' });
 
@@ -148,6 +170,9 @@ function Games() {
   let { createCart, cartGames, countIncrease } = useContext(CartContext)
 
 
+  useEffect(() => {
+    getData()
+  }, [])
 
 
   return (
@@ -182,32 +207,38 @@ function Games() {
             </div>
           </div>
 
-          {gamesList.filter(game => game.title.toLowerCase().includes(titleFilter.toLowerCase())
+          {gameData.filter(game => game.title.toLowerCase().includes(titleFilter.toLowerCase())
             && ((priceFilter.min === '' || parseFloat(game.price) >= parseFloat(priceFilter.min))
               && (priceFilter.max === '' || parseFloat(game.price) <= parseFloat(priceFilter.max)))).map((game) => (
                 <div key={game.id} className="h-100 col-sm-12 col-md-6 col-lg-3  mb-2 ">
                   <Card className={` ${Styles.gamecard} overflow-hidden `} >
-                    <Link to={`/Product-details/${game.id}`} className='text-decoration-none'>
-                      <Card.Img variant="top" className={`${Styles.img} `} style={{ height: '10rem', objectFit: 'cover' }} src={game.imageUrl} />
+                    <Link to={`/Product-details/${game._id}`} className='text-decoration-none'>
+                      <Card.Img variant="top" className={`${Styles.img} `} style={{ height: '10rem', objectFit: 'cover' }} src={game.imageURL} />
                     </Link>
                     <Card.Body>
                       <Card.Title className='text-bold'><h6 className='text-main'>{game.title}</h6></Card.Title>
-                      <Card.Title ><p>{game.price}</p></Card.Title>
+                      <Card.Title ><p>{game.price} $</p></Card.Title>
+
+
+
                       <Button
                         variant=""
                         className={`btn ${Styles.Game} w-100`}
                         onClick={() => {
-                          handleGames(`${game.title} added to cart`);
-                          createCart(game.id);
 
-                          const existingGame = cartGames.find((cartGame) => cartGame.id === game.id);
+                          createCart(game._id);
+
+                          const existingGame = cartGames.find((cartGame) => cartGame._id === game._id);
                           if (existingGame) {
                             // If the game already exists in the cart, update its count
                             existingGame.count += 1;
+                            handleGames('Game already exists')
+
                           } else {
                             // If the game doesn't exist in the cart, add it
                             countIncrease()
                             cartGames.push(game);
+                            handleGames(`${game.title} added to cart`);
                           }
 
                           console.log(cartGames);
