@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Styles from './ProductDetails.module.css';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import { gamesList } from '../Games/Games';
 import { CartContext } from '../../Context/CartContext';
 
 // display a toast message when the user clicks on the Add to cart button
@@ -28,34 +27,157 @@ const toastMessage = (msg) => {
 }
 
 function ProductDetails() {
+
   // Get the id parameter from the URL using the useParams hook
   const { id } = useParams();
   console.log(id)
-  // Find the game object with the matching id from the gamesList array
-  const game = gamesList.find((game) => game.id === parseInt(id));
-
-
   //NOTE - Initialize useContext
+  let { createCart, gameData, getData } = useContext(CartContext)
+  let [Id, setID] = useState('')
+  // Find the game object with the matching id from the gamesList array
+  console.log(gameData, "abdo  ");
 
-  let { createCart } = useContext(CartContext)
+
+  let gamesList = gameData.find((game) => game._id === id);
+  console.log(gamesList, "--------------------------------");
+
+
+
+  useEffect(() => {
+    getData()
+
+  }, [])
+
   return (
     <>
       <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <img src={game.imageUrl} alt={game.title} className="img-fluid" />
+
+        <div className={`${Styles.ProductDetails} row p-4 rounded`} >
+          <div className="row">
+            <div className="col-md-6">
+              <img src={gamesList.imageURL} alt={gamesList.title} className="img-fluid rounded shadow-lg" />
+            </div>
+            <div className="col-md-6">
+              <h2 className="text-white">{gamesList.title}</h2>
+              <h3 className=" text-main">{gamesList.price} {gamesList.currency}</h3>
+              <p className="text-white">{gamesList.description}</p>
+              <Button variant="" onClick={() => {
+                handleGames(`${gamesList.title} added to cart`)
+                createCart(gamesList.id)
+              }}>Add to cart</Button>
+            </div>
           </div>
-          <div className="col-md-6">
-            <h1 className="text-white">{game.title}</h1>
-            <h2 className="text-white">{game.price}</h2>
-            <p className="text-white">{game.description}</p>
-            <Button variant="" onClick={() => {
-              handleGames(`${game.title} added to cart`)
-              createCart(game.id)
-            }}>Add to cart</Button>
+
+          <div className="row py-5">
+            <div className="col-md-12">
+              <h3 className=" text-main text-center mb-5">About The Game </h3>
+
+              <table className='table w-50 mx-auto mb-5'>
+                <tbody className='text-white fs-5 fw-bold'>
+                  <tr>
+                    <td className=''>DEVELOPER:</td>
+                    <td>{gamesList.developer}</td>
+                  </tr>
+
+                  <tr>
+                    <td className=''>Publisher:</td>
+                    <td>{gamesList.publisher}</td>
+                  </tr>
+
+
+                  <tr>
+                    <td className=''>EDITION:</td>
+                    <td>{gamesList.edition}</td>
+                  </tr>
+                  <tr>
+                    <td className=''>PLATFORM:</td>
+                    <td>{gamesList.platform}</td>
+                  </tr>
+
+
+
+                  <tr>
+                    <td className=''>GENRES:</td>
+                    <td className=' text-main'>{gamesList['genres'].map((genre, index) => (
+                      index === gamesList.genres.length - 1 ? genre : `${genre}, `
+
+                    ))}</td>
+                  </tr>
+
+
+
+                  <tr>
+                    <td className=''>LANGUAGES:</td>
+                    <td className=' text-main'>{gamesList['languages'].map((language, index) => (
+                      index === gamesList.languages.length - 1 ? language : `${language}, `
+
+                    ))}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+              <h3 className=" text-main  mb-5 text-center">Specifications </h3>
+
+
+
+              <table className='table w-50 mx-auto mb-5'>
+                <tbody className='text-white fs-5 fw-bold'>
+                  <tr>
+                    <td className=''>DEVELOPER:</td>
+                    <td>{gamesList.developer}</td>
+                  </tr>
+
+                  <tr>
+                    <td className=''>Publisher:</td>
+                    <td>{gamesList.publisher}</td>
+                  </tr>
+
+
+                  <tr>
+                    <td className=''>EDITION:</td>
+                    <td>{gamesList.edition}</td>
+                  </tr>
+                  <tr>
+                    <td className=''>PLATFORM:</td>
+                    <td>{gamesList.platform}</td>
+                  </tr>
+
+
+
+                  <tr>
+                    <td className=''>GENRES:</td>
+                    <td className=' text-main'>{gamesList['genres'].map((genre, index) => (
+                      index === gamesList.genres.length - 1 ? genre : `${genre}, `
+
+                    ))}</td>
+                  </tr>
+
+
+
+                  <tr>
+                    <td className=''>LANGUAGES:</td>
+                    <td className=' text-main'>{gamesList['languages'].map((language, index) => (
+                      index === gamesList.languages.length - 1 ? language : `${language}, `
+
+                    ))}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+              <div className="d-flex">
+
+              </div>
+
+            </div>
           </div>
+
         </div>
-      </div>
+
+
+      </div >
     </>
   );
 }

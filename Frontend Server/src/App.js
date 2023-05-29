@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +10,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import Layout from "./Components/Layout/Layout";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
+import Profile from "./Components/Profile/Profile";
 import NotFound from "./Components/NotFound/NotFound";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,15 +23,8 @@ function App() {
 
 
 
- 
-
-
-
-
-
-
   let routers = createBrowserRouter([{
-    path: "", element: <Layout />, children: [
+    path: "", element: <Layout/>, children: [
       { index: true, element: <Home /> },
       { path: "/games", element: <Games /> },
       { path: "/Product-details/:id", element: <ProductDetails /> },
@@ -39,6 +33,7 @@ function App() {
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/PopularNow", element: <PopularNow /> },
+      { path: "/profile", element: <Profile /> },
 
       { path: "*", element: <NotFound /> },
     ]
