@@ -4,6 +4,7 @@ import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 import { Helmet } from "react-helmet";
 
 // import toast, { Toaster } from 'react-hot-toast';
@@ -13,38 +14,54 @@ export default function Register() {
   let navigate = useNavigate();
 
 
-  //NOTE - yup initialization
-  let mySchema = Yup.object({
-    name: Yup.string().required('name is required').min(3, 'min chars are 3 ').max(20, 'max chars are 20'),
-    email: Yup.string().email('').required('email is required'),
-    password: Yup.string().matches(/^[A-Z][a-z0-9]{3,8}/, 'invalid password').required('password is required'),
-    confirmPassword: Yup.string().required('Required').oneOf([Yup.ref('password')], 'passwords not matches'),
-    phone: Yup.string().required('phone is required').matches(/^01[0125][0-9]{8}$/, 'invalid phone')
-  });
-
-
-
-  //NOTE - formik initialization 
-  let formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: ""
-    },
-    validationSchema: mySchema,
-    onSubmit: handleLogin
-  });
-
-
   //NOTE - handleLogin function
-  function handleLogin(values) {
+  async function handleLogin(values) {
 
-    console.log(formik.values);
-    toastMessage(`Registration Succeeded 👍`)
-    navigate('/Login')
+    let {data} = await axios.post('http://localhost:4000/app2', values).catch((errr)=>{
+    
+        toastMessage(`Registration Failed 👎`)
+        console.log(JSON.stringify(data));
+  
+    })
+    if(data){
+      toastMessage(`Registration Succeeded 👍`)
+      console.log(JSON.stringify(data));
+      navigate('/Login');
+     }
+   
   }
+
+    //NOTE - yup initialization
+    let mySchema = Yup.object({
+      firstName: Yup.string().required('name is required').min(3, 'min chars are 3 ').max(20, 'max chars are 20'),   
+      lastName: Yup.string().required('name is required').min(3, 'min chars are 3 ').max(20, 'max chars are 20'),
+      email: Yup.string().email('').required('email is required'),
+      password: Yup.string().matches(/^[A-Z][a-z0-9]{3,8}/, 'invalid password').required('password is required'),
+      dateOfBirth: Yup.string().required('Date of birth is required').min(3, 'min chars are 3 ').max(20, 'max chars are 20'),   
+      country: Yup.string().required('country is required').min(3, 'min chars are 3 ').max(20, 'max chars are 20'),   
+      confirmPassword: Yup.string().required('Required').oneOf([Yup.ref('password')], 'passwords not matches'),
+      phone: Yup.string().required('phone is required').matches(/^01[0125][0-9]{8}$/, 'invalid phone')
+    });
+  
+  
+  
+  
+
+    //NOTE - formik initialization 
+    let formik = useFormik({
+      initialValues: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        country: "",
+        dateOfBirth: "",
+        phone: ""
+      },
+      validationSchema: mySchema,
+      onSubmit: handleLogin
+    });
 
 
   //NOTE - Display toastMessage
@@ -82,11 +99,14 @@ export default function Register() {
             <h2 className='text-white '>Register</h2>
 
             <form onSubmit={formik.handleSubmit} >
-              <label htmlFor="name">Name:</label>
-              <input type="text" id='name' className='form-control mb-2' name='name' value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-
-              {formik.errors.name && formik.touched.name ? <div className="alert alert-danger">{formik.errors.name}</div> : ''}
-
+            <label htmlFor="firstName">firstName:</label>
+              <input type="text" id='firstName' className='form-control mb-2' name='firstName' value={formik.values.firstName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+              {formik.errors.firstName && formik.touched.firstName ? <div className="alert alert-danger">{formik.errors.firstName}</div> : ''}
+            
+              <label htmlFor="lastName">lastName:</label>
+              <input type="text" id='lastName' className='form-control mb-2' name='lastName' value={formik.values.lastName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+              {formik.errors.lastName && formik.touched.lastName ? <div className="alert alert-danger">{formik.errors.lastName}</div> : ''}
+            
               <label htmlFor="Email">Email:</label>
               <input type="text" id='Email' className='form-control mb-2' name='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
               {formik.errors.email && formik.touched.email ? <div className="alert alert-danger">{formik.errors.email}</div> : ''}
@@ -104,10 +124,15 @@ export default function Register() {
               <input type="tel" id='phone' className='form-control mb-2' name='phone' value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} />
               {formik.errors.phone && formik.touched.phone ? <div className="alert alert-danger">{formik.errors.phone}</div> : ''}
 
+              <label htmlFor="country">country:</label>
+              <input type="text" id='country' className='form-control mb-2' name='country' value={formik.values.country} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+              {formik.errors.country && formik.touched.country ? <div className="alert alert-danger">{formik.errors.country}</div> : ''}
 
+              <label htmlFor="dateOfBirth">date Of Birth:</label>
+              <input type="date" id='dateOfBirth' className='form-control mb-2' name='dateOfBirth' value={formik.values.dateOfBirth} onChange={formik.handleChange} onBlur={formik.handleBlur} />
+              {formik.errors.dateOfBirth && formik.touched.dateOfBirth ? <div className="alert alert-danger">{formik.errors.dateOfBirth}</div> : ''}
 
-
-              <button className='btn btn-success mb-3'>Register</button>
+              <button className='btn btn-success mb-3' type='submit'>Register</button>
 
             </form>
 

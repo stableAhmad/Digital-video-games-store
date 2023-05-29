@@ -50,7 +50,7 @@ function App() {
         <CounterContextProvider>
           <RouterProvider router={routers} ></RouterProvider >
           <Online>{() => {
-            toastMessage(`You Are Online`)
+           // toastMessage(`You Are Online`)
           }} </Online>
           <Offline>Only shown offline (surprise!)</Offline>
         </CounterContextProvider>
