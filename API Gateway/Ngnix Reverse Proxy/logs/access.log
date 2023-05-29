@@ -101,3 +101,5 @@
 127.0.0.1 - - [28/May/2023:22:34:13 +0200] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
 127.0.0.1 - - [28/May/2023:22:34:19 +0200] "GET /app1/get/all/full HTTP/1.1" 200 1789 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
 127.0.0.1 - - [28/May/2023:22:34:44 +0200] "GET /app1/get/bestSellers HTTP/1.1" 200 1789 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
+127.0.0.1 - - [29/May/2023:05:28:49 +0200] "GET / HTTP/1.1" 502 157 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"
+127.0.0.1 - - [29/May/2023:05:28:49 +0200] "GET /favicon.ico HTTP/1.1" 499 0 "http://localhost:4000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0"

@@ -70,3 +70,5 @@
 2023/05/28 22:31:42 [notice] 7340#17764: signal process started
 2023/05/28 22:31:42 [warn] 6172#5480: server name "http://127.0.0.1" has suspicious symbols in A:\i\Coding\Projects\level-up-game-market-place\API Gateway\ngnix reverse proxy/conf/nginx.conf:27
 2023/05/28 22:33:35 [notice] 20264#19596: signal process started
+2023/05/29 05:28:49 [error] 21872#17832: *32 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: 127.0.0.1, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "localhost:4000"
+2023/05/29 05:56:15 [notice] 1100#8880: signal process started
