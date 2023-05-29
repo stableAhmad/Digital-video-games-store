@@ -3,7 +3,7 @@ import { CartContext } from '../../Context/CartContext';
 import styles from '../cart/cart.module.css';
 import { Offline, Online } from "react-detect-offline";
 import { Slide, ToastContainer, toast } from 'react-toastify';
-
+import { Helmet } from "react-helmet";
 export default function Cart() {
   const { cartGames, setCartGames, countDecrease } = useContext(CartContext);
 
@@ -37,8 +37,13 @@ export default function Cart() {
 
   return (
     <>
-
-
+      {/* //NOTE -Helmet  */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>CART🛒</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      {/* //NOTE -Network Detect */}
       <Offline><div className={`${styles.Network} text-white rounded border m-3 p-2`}>offline</div></Offline>
 
 
