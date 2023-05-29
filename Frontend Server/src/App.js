@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,15 +22,8 @@ function App() {
 
 
 
- 
-
-
-
-
-
-
   let routers = createBrowserRouter([{
-    path: "", element: <Layout />, children: [
+    path: "", element: <Layout/>, children: [
       { index: true, element: <Home /> },
       { path: "/games", element: <Games /> },
       { path: "/Product-details/:id", element: <ProductDetails /> },

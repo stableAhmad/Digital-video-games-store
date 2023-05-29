@@ -9,6 +9,23 @@ export const CartContext = createContext(0)
 
 export default function CounterContextProvider(props) {
 
+    let [userData, setUserData] = useState(null);
+
+
+  
+  function saveUserData() {
+    setUserData(localStorage.getItem("userToken"));
+   console.log(userData);
+  }
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      saveUserData();
+    }
+  }, [saveUserData]);
+
+
+
+
     const [cart, setCart] = useState(0)
     const [cartGames, setCartGames] = useState([])
     let [cartItemsCount, setCartItemsCount] = useState(0)
@@ -30,7 +47,7 @@ export default function CounterContextProvider(props) {
         setCartItemsCount(--cartItemsCount)
     }
 
-    return <CartContext.Provider value={{ cart, createCart, cartGames, setCartGames, cartItemsCount, countIncrease, countDecrease, gameData, getData }}>
+    return <CartContext.Provider value={{ cart, createCart, cartGames, setCartGames, cartItemsCount, countIncrease, countDecrease,userData,setUserData,saveUserData, gameData, getData }}>
 
 
         {props.children}
