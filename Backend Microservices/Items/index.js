@@ -15,30 +15,30 @@ app.use(express.json())
 
 
 
-async function pre(){
-	
-	try{
+async function pre() {
+
+	try {
 
 		dbClient = await mongoDB.connect()
-		if(dbClient){
+		if (dbClient) {
 			console.log("db connection established")
 			itemModelDBClient.client = dbClient;
 			relationDBClient.client = dbClient
 			app.use(apiRouter)
-			}else{
-				console.log("Database connection failed")
-				app.get('*', (req, res) => {
-  			res.send('Database connection failed')
-					})
+		} else {
+			console.log("Database connection failed")
+			app.get('*', (req, res) => {
+				res.send('Database connection failed')
+			})
 		}
 
-	}catch(err){
+	} catch (err) {
 
 		console.log(err.message)
 		console.log("Database connection failed")
 		app.get('*', (req, res) => {
-  	res.send('Database connection failed')
-  			})
+			res.send('Database connection failed')
+		})
 	}
 }
 
@@ -50,20 +50,20 @@ pre()
 
 
 
-app.listen(PORT_NUMBER, ()=>{
-	console.log("the item service is listening on port "+PORT_NUMBER)
+app.listen(PORT_NUMBER, () => {
+	console.log("the item service is listening on port " + PORT_NUMBER)
 })
 
 
 
 app.on('close', async () => {
-  if(dbClient){
-  	const res = await mongoDB.disconnect()
-  	if(res){
-  		console.log("db connection closed successfully")
-  	}else{
-  		console.log("closing failed")
-  	}
-  }
+	if (dbClient) {
+		const res = await mongoDB.disconnect()
+		if (res) {
+			console.log("db connection closed successfully")
+		} else {
+			console.log("closing failed")
+		}
+	}
 
 })
