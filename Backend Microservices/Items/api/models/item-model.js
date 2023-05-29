@@ -3,7 +3,7 @@ const { ObjectId } = require('mongodb')
 
 const bestSellersMax = 40
 
-let DBClient = {client : "temp"}
+let itemModelDBClient = {client : "temp"}
 
 
 let projection = { }
@@ -20,7 +20,7 @@ async function findByID(id){
   try{
 
       const query = { _id: new ObjectId(id) }
-      const result = await DBClient.client.db("items").collection('item').findOne(query)
+      const result = await itemModelDBClient.client.db("items").collection('item').findOne(query)
 
       return result;
 
@@ -37,7 +37,7 @@ async function findAllFull(){
 
   try{
 
-      const result = await DBClient.client.db("items").collection('item').find().toArray()
+      const result = await itemModelDBClient.client.db("items").collection('item').find().toArray()
       return result;
 
   }catch(err){
@@ -59,7 +59,7 @@ async function findAllPart(attributes){
  
       projection._id = 1
       console.log(projection)
-      const result = await DBClient.client.db("items").collection('item').find({}, {projection : projection}).toArray()
+      const result = await itemModelDBClient.client.db("items").collection('item').find({}, {projection : projection}).toArray()
       return result;
 
   }catch(err){
@@ -73,7 +73,7 @@ async function findAllPart(attributes){
 
 async function findBestSellers(){
     try{
-        let res = await findAllFull(DBClient)
+        let res = await findAllFull(itemModelDBClient)
         res.sort((a, b) => b.sold_count - a.sold_count)
         if (res.length > 50) {
               return res.slice(0, 50)
@@ -88,7 +88,7 @@ async function findBestSellers(){
 
 
 module.exports = {
-  DBClient:DBClient,
+  itemModelDBClient:itemModelDBClient,
   findByID: findByID,
   findAllFull:findAllFull,
   findAllPart:findAllPart,

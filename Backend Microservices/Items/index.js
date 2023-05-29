@@ -1,7 +1,8 @@
 const express = require('express')
 const mongoDB = require('./api/mongo')
 const apiRouter = require('./api/routes/router')
-const { DBClient } = require('./api/models/item-model')
+const { itemModelDBClient } = require('./api/models/item-model')
+const { relationDBClient } = require('./api/models/user-item-relation-model')
 
 const app = express()
 const PORT_NUMBER = 5000
@@ -21,7 +22,8 @@ async function pre(){
 		dbClient = await mongoDB.connect()
 		if(dbClient){
 			console.log("db connection established")
-			DBClient.client = dbClient;
+			itemModelDBClient.client = dbClient;
+			relationDBClient.client = dbClient
 			app.use(apiRouter)
 			}else{
 				console.log("Database connection failed")
