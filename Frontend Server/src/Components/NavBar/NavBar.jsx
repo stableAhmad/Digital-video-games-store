@@ -8,7 +8,6 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
-import DarkMode from '../DarkMode/DarkMode';
 import { CartContext } from '../../Context/CartContext';
 
 
@@ -48,7 +47,6 @@ function NavBar() {
                   <i class="fas fa-shopping-cart fa-lg text-white position-relative"></i> <div className="badge bg-danger position-absolute start">{cartItemsCount} </div></div></Nav.Link>
 
               </Form>
-              <DarkMode />
 
             </Navbar.Collapse>
           </Container>

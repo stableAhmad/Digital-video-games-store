@@ -1,1 +1,9 @@
-.ProductDetails {}
+.ProductDetails {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    background-color: transparent;
+    backdrop-filter: blur(12px);
+}
+
+.imgstyle{
+
+}
