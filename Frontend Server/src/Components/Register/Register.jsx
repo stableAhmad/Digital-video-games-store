@@ -4,6 +4,8 @@ import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
+import { Helmet } from "react-helmet";
+
 // import toast, { Toaster } from 'react-hot-toast';
 export default function Register() {
 
@@ -63,6 +65,16 @@ export default function Register() {
 
   return (
     <>
+
+      {/* //NOTE -Helmet  */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Registration</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
+
+
       <div className=" container my-3">
         <div className="row">
           <div className={`${styles.card}  card text-white `}>

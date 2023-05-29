@@ -2,6 +2,8 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import styles from '../PopularNow/PopularNow.module.css';
+import { Helmet } from "react-helmet";
+
 const gameSlides = [
     {
         mainImage: 'https://i.ytimg.com/vi/4uP2MyUL49s/maxresdefault.jpg',
@@ -46,7 +48,11 @@ const gameSlides = [
 export default function PopularNow() {
     return (
         <>
-
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>POPULAR NOW 🔥</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
 
             <div className="row ">
 

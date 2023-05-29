@@ -6,6 +6,7 @@ import { Slide, ToastContainer, toast } from 'react-toastify';
 import ProductDetails from '../ProductDetails/ProductDetails';
 import { Link } from "react-router-dom";
 import { CartContext } from '../../Context/CartContext';
+import { Helmet } from "react-helmet";
 
 
 export const gamesList = [
@@ -151,6 +152,16 @@ function Games() {
 
   return (
     <>
+
+
+      {/* //NOTE -Helmet  */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>GAMES🎯</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
+
       <div className="container">
         <h1 className='text-white mb-5'>Our Games</h1>
 
