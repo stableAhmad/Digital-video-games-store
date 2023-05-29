@@ -97,7 +97,7 @@ async function addCart(email, id){
     }catch(err){
       console.log(err)
     }
-  }
+}
 
 
 async function addWishlist(email, id){
