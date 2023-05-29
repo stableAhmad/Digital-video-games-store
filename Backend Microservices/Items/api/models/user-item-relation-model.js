@@ -65,7 +65,7 @@ async function addOrder(email, id){
        
 
 
-async function addCart(email, id){
+async function addCart(email, game){
 
   try{
     
@@ -75,7 +75,7 @@ async function addCart(email, id){
       const newInstance = {email:email,
         orders:[],
         wishlist:[],
-        cart:[id]}
+        cart:[game]}
 
         await relationDBClient.client.db("user-item-relations").collection('relation').insertOne(newInstance,function(err, result) {
           if (err) {
@@ -90,14 +90,14 @@ async function addCart(email, id){
 
     }else{
         let newCart = relation.cart
-        newCart.push(id)
+        newCart.push(game)
         const back = await relationDBClient.client.db("user-item-relations").collection('relation').updateOne({ email: email },          
           { $set: { cart: newCart} })
     }
     }catch(err){
       console.log(err)
     }
-  }
+}
 
 
 async function addWishlist(email, id){
@@ -136,7 +136,7 @@ async function addWishlist(email, id){
 
 
 
-async function deleteFromCart(email, id){
+async function deleteFromCart(email, game){
 
   try{
     let target = await relationDBClient.client.db("user-item-relations").collection('relation').findOne({email : email})

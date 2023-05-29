@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import axios from 'axios';
 
 
@@ -12,16 +12,16 @@ export default function CounterContextProvider(props) {
     let [userData, setUserData] = useState(null);
 
 
-
-    function saveUserData() {
-        setUserData(localStorage.getItem("userToken"));
-        console.log(userData);
+  
+  function saveUserData() {
+    setUserData(localStorage.getItem("userToken"));
+   console.log(userData);
+  }
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      saveUserData();
     }
-    useEffect(() => {
-        if (localStorage.getItem("userToken")) {
-            saveUserData();
-        }
-    }, [saveUserData]);
+  }, [saveUserData]);
 
 
 
