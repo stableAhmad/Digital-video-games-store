@@ -7,7 +7,7 @@ import ProductDetails from '../ProductDetails/ProductDetails';
 import { Link } from "react-router-dom";
 import { CartContext } from '../../Context/CartContext';
 import { Helmet } from "react-helmet";
-
+import axios from 'axios';
 
 
 
@@ -125,12 +125,19 @@ export const gamesList = [
 function Games() {
 
 
-
-  let { getData, gameData } = useContext(CartContext)
-
-
+  const { getData, gameData, userData } = useContext(CartContext)
+  console.log(userData);
 
 
+
+  async function addGameToCart(gameId) {
+    try {
+      let response = await axios.post(`http://localhost:4000//app1/add/relation/cart/${userData}/${gameId}`);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
 
@@ -239,6 +246,7 @@ function Games() {
                             countIncrease()
                             cartGames.push(game);
                             handleGames(`${game.title} added to cart`);
+                            addGameToCart(game._id)
                           }
 
                           console.log(cartGames);

@@ -14,10 +14,10 @@ import { useNavigate } from 'react-router-dom';
 function NavBar() {
   // Initialize the useNavigate hook from the react-router-dom library
   let navigate = useNavigate();
-  
+
   // Get the cartItemsCount and user data from the CartContext
   let { cartItemsCount, saveUserData, userData } = useContext(CartContext);
-  
+
   // Function to handle user logout
   function handleLogout() {
     // Remove the user token from the local storage
@@ -53,7 +53,7 @@ function NavBar() {
                 />
                 <Button variant="outline-danger" className='mx-2'>Search</Button>
                 {/* Conditional rendering of Register and Login links based on user data */}
-                {userData == null ? 
+                {userData == null ?
                   <>
                     <Nav.Link as={Link} to={"register"} className='text-white m-2'>Register</Nav.Link>
                     <Nav.Link as={Link} to={"Login"} className='text-white m-2'>Login </Nav.Link>
@@ -72,7 +72,7 @@ function NavBar() {
                   </>
                 }
               </Form>
-              
+
 
             </Navbar.Collapse>
           </Container>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
 
 
@@ -12,16 +12,16 @@ export default function CounterContextProvider(props) {
     let [userData, setUserData] = useState(null);
 
 
-  
-  function saveUserData() {
-    setUserData(localStorage.getItem("userToken"));
-   console.log(userData);
-  }
-  useEffect(() => {
-    if (localStorage.getItem("userToken")) {
-      saveUserData();
+
+    function saveUserData() {
+        setUserData(localStorage.getItem("userToken"));
+        console.log(userData);
     }
-  }, [saveUserData]);
+    useEffect(() => {
+        if (localStorage.getItem("userToken")) {
+            saveUserData();
+        }
+    }, [saveUserData]);
 
 
 
@@ -47,7 +47,7 @@ export default function CounterContextProvider(props) {
         setCartItemsCount(--cartItemsCount)
     }
 
-    return <CartContext.Provider value={{ cart, createCart, cartGames, setCartGames, cartItemsCount, countIncrease, countDecrease,userData,setUserData,saveUserData, gameData, getData }}>
+    return <CartContext.Provider value={{ cart, createCart, cartGames, setCartGames, cartItemsCount, countIncrease, countDecrease, userData, setUserData, saveUserData, gameData, getData }}>
 
 
         {props.children}
