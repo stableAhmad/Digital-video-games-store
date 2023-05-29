@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../Context/CartContext';
 import styles from '../cart/cart.module.css';
+import { Offline, Online } from "react-detect-offline";
+import { Slide, ToastContainer, toast } from 'react-toastify';
 
 export default function Cart() {
   const { cartGames, setCartGames, countDecrease } = useContext(CartContext);
@@ -30,8 +32,16 @@ export default function Cart() {
 
   };
 
+
+
+
   return (
     <>
+
+
+      <Offline><div className={`${styles.Network} text-white rounded border m-3 p-2`}>offline</div></Offline>
+
+
       <h1 className="text-white">Cart</h1>
 
       <div className="container">

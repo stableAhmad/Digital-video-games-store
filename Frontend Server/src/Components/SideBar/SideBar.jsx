@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { FaTachometerAlt, FaGem, FaRegLaughWink, FaHeart, FaList, FaUser, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
+import { FaTachometerAlt, faHouse,FaFire, FaCheck , FaList, FaUser, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import styles from '../SideBar/SideBar.module.css';
 
 export default function Sidebar() {
@@ -39,25 +39,25 @@ export default function Sidebar() {
 
             <NavLink to="/" exact activeClassName="active" className={styles.sidebarLink}>
               <FaTachometerAlt className={styles.sidebarIcon} />
-              {!showIconsOnly && <span className={styles.sidebarText}>Dashboard</span>}
+              {!showIconsOnly && <span className={styles.sidebarText}>Home</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/PopularNow" activeClassName="active" className={styles.sidebarLink}>
-              <FaGem className={styles.sidebarIcon} />
+              <FaFire  className={styles.sidebarIcon} />
               {!showIconsOnly && <span className={styles.sidebarText}>Popular Now</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/Games" activeClassName="active" className={styles.sidebarLink}>
-              <FaRegLaughWink className={styles.sidebarIcon} />
+              <i class={`${styles.sidebarIcon} fa-solid fa-gamepad`}></i>
               {!showIconsOnly && <span className={styles.sidebarText}>Games</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/cart" activeClassName="active" className={styles.sidebarLink}>
-              <FaHeart className={styles.sidebarIcon} />
-              {!showIconsOnly && <span className={styles.sidebarText}>With Prefix</span>}
+              <i class={`${styles.sidebarIcon} fas fa-shopping-cart fa text-white position-relative`}></i>
+              {!showIconsOnly && <span className={styles.sidebarText}>CART</span>}
             </NavLink>
           </li>
           <li>

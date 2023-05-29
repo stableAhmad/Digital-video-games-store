@@ -11,14 +11,23 @@ import Layout from "./Components/Layout/Layout";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import NotFound from "./Components/NotFound/NotFound";
-import Darkmode from 'darkmode-js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PopularNow from "./Components/PopularNow/PopularNow";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import CounterContextProvider from './Context/CounterContext';
 import CartContextProvider from './Context/CartContext';
+import { Offline, Online } from "react-detect-offline";
 function App() {
+
+
+
+ 
+
+
+
+
+
 
   let routers = createBrowserRouter([{
     path: "", element: <Layout />, children: [
@@ -40,6 +49,10 @@ function App() {
       <CartContextProvider>
         <CounterContextProvider>
           <RouterProvider router={routers} ></RouterProvider >
+          <Online>{() => {
+            toastMessage(`You Are Online`)
+          }} </Online>
+          <Offline>Only shown offline (surprise!)</Offline>
         </CounterContextProvider>
       </CartContextProvider>
 

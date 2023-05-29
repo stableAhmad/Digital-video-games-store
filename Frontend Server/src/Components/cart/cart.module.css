@@ -1,5 +1,3 @@
-
-
 .Cart {
 
     background-color: transparent;
@@ -9,6 +7,16 @@
 
 }
 
-.smaillimg{
+.smaillimg {
     height: 50px;
+}
+
+.Network {
+    background-color: transparent;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    right: 0;
+    bottom: 0;
 }
