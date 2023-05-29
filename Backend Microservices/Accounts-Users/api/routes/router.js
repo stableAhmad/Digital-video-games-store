@@ -35,9 +35,9 @@ router.get('/:email', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    console.log("Checking if item exists");
+    console.log("Adding a new item");
     const newUser = req.body;
-    const result = await userModel.validateUser(newUser.email, newUser.password);
+    const result = await userModel.add(newUser);
     res.json(result);
   } catch (error) {
     console.error(error.message);
@@ -49,15 +49,15 @@ router.post('/', async (req, res) => {
 
 router.post('/:email', async (req, res) => {
   try {
-    console.log("Adding a new item");
+    console.log("Checking if user exists");
     const newUser = req.body;
-    const result = await userModel.add(newUser);
+    const result = await userModel.validateUser(newUser.email, newUser.password);
     res.json(result);
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ error: 'Server error' });
   }
-});
+  });
 
 // Put route
 
