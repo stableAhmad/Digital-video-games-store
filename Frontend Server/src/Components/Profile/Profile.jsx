@@ -20,7 +20,7 @@ export default function Profile() {
      
      useEffect(() => { 
         getUserMail();
-        getData();  
+        getData(); 
      }, [])
 
 
