@@ -16,8 +16,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PopularNow from "./Components/PopularNow/PopularNow";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
-
-
+import CounterContextProvider from './Context/CounterContext';
+import CartContextProvider from './Context/CartContext';
 function App() {
 
   let routers = createBrowserRouter([{
@@ -37,7 +37,12 @@ function App() {
   return (
     <>
       <ToastContainer ></ToastContainer>
-      <RouterProvider router={routers} />
+      <CartContextProvider>
+        <CounterContextProvider>
+          <RouterProvider router={routers} ></RouterProvider >
+        </CounterContextProvider>
+      </CartContextProvider>
+
     </>
   );
 

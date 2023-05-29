@@ -1,1 +1,14 @@
-.Cart {}
+
+
+.Cart {
+
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(8px);
+
+}
+
+.smaillimg{
+    height: 50px;
+}

@@ -5,7 +5,7 @@ import styles from '../SideBar/SideBar.module.css';
 
 export default function Sidebar() {
 
-   
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showIconsOnly, setShowIconsOnly] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -24,7 +24,7 @@ export default function Sidebar() {
     <div className={sidebarClassNames}>
       <div className={styles.sidebarHeader}>
         <div className={styles.sidebarToggle} onClick={handleToggleSidebar}>
-           {/* Toggle sidebar button */}
+          {/* Toggle sidebar button */}
           {sidebarOpen ? (
             <FaAngleDoubleLeft className={styles.sidebarToggleIcon} />
           ) : (
@@ -55,14 +55,14 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/prefixmenu" activeClassName="active" className={styles.sidebarLink}>
+            <NavLink to="/cart" activeClassName="active" className={styles.sidebarLink}>
               <FaHeart className={styles.sidebarIcon} />
               {!showIconsOnly && <span className={styles.sidebarText}>With Prefix</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/multilevel" activeClassName="active" className={styles.sidebarLink}>
-             <FaList className={styles.sidebarIcon} />
+              <FaList className={styles.sidebarIcon} />
               {!showIconsOnly && <span className={styles.sidebarText}>Multi Level</span>}
             </NavLink>
           </li>

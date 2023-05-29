@@ -150,3 +150,17 @@ p {
 .dark-mode-toggle input:checked+.toggle-track:before {
     transform: translateX(26px);
 }
+
+
+button {
+    color: #fff !important;
+    background-color: #00000085 !important;
+}
+
+
+
+
+button:hover {
+    color: #fff !important;
+    background-color: #c22727 !important;
+}
