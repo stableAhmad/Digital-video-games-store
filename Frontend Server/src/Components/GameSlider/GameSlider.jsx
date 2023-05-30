@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from './GameSlider.module.css';
 import { Slide, ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 //NOTE - GameSlider Array that Represent the games
 const gameSlides = [
@@ -42,12 +43,6 @@ const gameSlides = [
 ];
 
 
-//NOTE - handleLogin function
-function handleAddToCardToast(values) {
-
-  toastMessage(`Added To Card 👍`)
-}
-
 
 //NOTE - Display toastMessage
 const toastMessage = (msg) => {
@@ -68,6 +63,17 @@ const toastMessage = (msg) => {
 
 
 export default function GameSlider() {
+
+  let navigate = useNavigate();
+
+//NOTE - handleLogin function
+function handleAddToCardToast(values) {
+
+  toastMessage(`Welcome to the Games Page 👍`)
+  navigate('/games');
+}
+
+  
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function handleSlider() {
@@ -121,9 +127,9 @@ export default function GameSlider() {
             <div className={`${styles.info} card mb-5 p-4 `}>
               <h2>{gameSlides[currentSlide].title}</h2>
               <p className={styles.description}>{gameSlides[currentSlide].description.split(' ').splice(0, 15).join(' ')}</p>
-              <button className={`${styles.Addbtn} btn m-2  `} onClick={() => {
+              <button className={`${styles.Addbtn} btn m-2  `}   onClick={() => {
                 handleAddToCardToast();
-              }}>Add to Cart</button>
+              }}>See More</button>
             </div>
             {/* Images under the card */}
             <div className="d-flex">

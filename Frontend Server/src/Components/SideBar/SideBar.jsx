@@ -62,12 +62,7 @@ export default function Sidebar() {
               {!showIconsOnly && <span className={styles.sidebarText}>CART</span>}
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/multilevel" activeClassName="active" className={styles.sidebarLink}>
-              <FaList className={styles.sidebarIcon} />
-              {!showIconsOnly && <span className={styles.sidebarText}>Multi Level</span>}
-            </NavLink>
-          </li>
+
         </ul>
       </div>
       {userData ?

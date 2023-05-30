@@ -18,7 +18,7 @@ import PopularNow from "./Components/PopularNow/PopularNow";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import CounterContextProvider from './Context/CounterContext';
 import CartContextProvider from './Context/CartContext';
-import { Offline, Online } from "react-detect-offline";
+
 import Orders from "./Components/Orders/Orders";
 function App() {
 
@@ -46,10 +46,7 @@ function App() {
       <CartContextProvider>
         <CounterContextProvider>
           <RouterProvider router={routers} ></RouterProvider >
-          <Online>{() => {
-            // toastMessage(`You Are Online`)
-          }} </Online>
-          <Offline>Only shown offline (surprise!)</Offline>
+
         </CounterContextProvider>
       </CartContextProvider>
 
