@@ -66,6 +66,14 @@ async function remove(email) {
 async function add(newUser) {
   try {
     const usersCollection = DBClient.client.db("users").collection("user");
+    const newInstance = {
+      email: newUser.email,
+      orders: [],
+      wishlist: [],
+      cart: []
+    }
+    const usersCollection2 = DBClient.client.db("user-item-relations").collection("relation");
+    await usersCollection2.insertOne(newInstance);
     const passwordHash = await bcrypt.encryptPassword(newUser.password);
     newUser.password = passwordHash;
     await usersCollection.insertOne(newUser);
