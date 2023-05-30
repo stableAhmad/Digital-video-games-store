@@ -18,26 +18,39 @@ import PopularNow from "./Components/PopularNow/PopularNow";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import CounterContextProvider from './Context/CounterContext';
 import CartContextProvider from './Context/CartContext';
-
+import { Offline, Online } from "react-detect-offline";
 import Orders from "./Components/Orders/Orders";
-import keycloak from './keycloak';
+import { useNavigate } from 'react-router-dom';
+import UserService from "./keycloak";
 
+
+const keycloak = UserService._kc
+const PrivateRoute = ({ element: Component, ...rest }) => {
+  const navigate = useNavigate();
+  const authenticated = UserService.isLoggedIn();
+
+  if (!authenticated) {
+    return navigate('/login');
+
+  }
+
+  return <Component {...rest} />;
+};
+
+
+
+
+
+const kc = UserService._kc
 function App() {
-
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
-      setAuthenticated(authenticated);
-    });
-  }, []);
-
 
 
 
   let routers = createBrowserRouter([{
     path: "", element: <Layout />, children: [
+
       { index: true, element: <Home /> },
+
       { path: "/games", element: <Games /> },
       { path: "/Product-details/:id", element: <ProductDetails /> },
       { path: "/software", element: <Software /> },
@@ -58,22 +71,11 @@ function App() {
 
   return (
     <>
-
-      <div>
-        {authenticated ? (
-          console.log("you are")
-        ) : (
-          console.log("you are not ")
-        )}
-      </div>
-
-
-
-
       <ToastContainer ></ToastContainer>
       <CartContextProvider>
         <CounterContextProvider>
           <RouterProvider router={routers} ></RouterProvider >
+
         </CounterContextProvider>
       </CartContextProvider>
 
