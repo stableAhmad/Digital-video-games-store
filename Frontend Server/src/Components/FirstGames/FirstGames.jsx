@@ -1,78 +1,284 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Styles from './FirstGames.module.css';
 import { Slide, ToastContainer, toast } from 'react-toastify';
-import { Link, Navigate } from "react-router-dom";
-import { gamesList } from '../Games/Games';
-import { useNavigate } from 'react-router-dom';
-
-//NOTE - useNavigate initialization
-
-const handleGames = (msg) => {
-
-  toastMessage(msg);
-}
-
-
-
-//NOTE - Display toastMessage
-const toastMessage = (msg) => {
-  toast.success(msg, {
-    position: "top-right",
-    autoClose: 1500,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-    transition: Slide
-  });
-}
+import ProductDetails from '../ProductDetails/ProductDetails';
+import { Link } from "react-router-dom";
+import { CartContext } from '../../Context/CartContext';
+import { Helmet } from "react-helmet";
+import axios from 'axios';
 
 
 
 
-function Games() {
-  let navigate = useNavigate();
-  const NavigateToGames = () => {
 
-    navigate('/games')
+// export const gamesList = [
+//   {
+//     id: 1,
+//     title: 'Little Nightmare 2',
+//     price: '69$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81qI1YxMtvlviq6RXG9qXl4C20gGRmxgMsXNiWvpD8rpWwplGcBZnp9Pij1MBpb5UqAg9TfltY6_Kb54moWn0KLAewG5Gw=w1920-h937',
+//     count: 1
+//   },
+//   {
+//     id: 2,
+//     title: 'Fortnite',
+//     price: '100$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission ',
+//     imageUrl: 'https://www.gamespot.com/a/uploads/scale_landscape/1575/15759911/3797878-little-nightmares-ii.jpg',
+//     count: 1
+//   },
+//   {
+//     id: 3,
+//     title: 'FIFA 23',
+//     price: '25$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://cdn1.epicgames.com/offer/f5deacee017b4b109476933f7dd2edbd/EGS_EASPORTSFIFA23StandardEdition_EACanada_S1_2560x1440-aaf9c5273c27a485f2cce8cb7e804f5c',
+//     count: 1
+//   },
+//   {
+//     id: 4,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg',
+//     count: 1
+//   },
+//   {
+//     id: 5,
+//     title: 'Grand Theft Auto V',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png', count: 1
+
+//   },
+//   {
+//     id: 6,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 7,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 8,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 9,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 10,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 11,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 12,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 13,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+//   {
+//     id: 14,
+//     title: 'Cyberpunk 2077',
+//     price: '30$',
+//     description: 'Little Nightmares II is a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by an evil transmission',
+//     imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg', count: 1
+//   },
+// ];
+
+
+
+
+
+
+function FirstGames() {
+
+   
+  const [numToShow, setNumToShow] = useState(4);
+  const { cartItemsCount, setCartItemsCount } = useContext(CartContext);
+
+  
+  useEffect(() => {
+    axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
+
+      setCartItemsCount(response.data.cart.length)
+    });
+  }, [cartItemsCount]);
+
+
+
+
+
+
+  const { getData, gameData, userData } = useContext(CartContext)
+  console.log(userData);
+
+
+
+  async function addGameToCart(gameId, game) {
+    try {
+      let response = await axios.post(`http://localhost:4000//app1/add/relation/cart/${userData}`, game);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  const gamesToDisplay = gamesList.slice(0, 4); // get the first 4 games
+
+
+
+
+  const handleGames = (msg) => {
+    toastMessage(msg);
+  }
+
+
+  //NOTE - Display toastMessage
+  const toastMessage = (msg) => {
+    toast.success(msg, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide
+    });
+  }
+
+
+
+
+
+
+
+
+
+  const [titleFilter, setTitleFilter] = useState('');
+  const [priceFilter, setPriceFilter] = useState({ min: '', max: '' });
+
+
+  let { createCart, cartGames, countIncrease } = useContext(CartContext)
+
+
+  useEffect(() => {
+    getData()
+  }, [])
+
 
   return (
     <>
-      <div className="container">
-        <h1 className='text-white mb-5'>Explore</h1>
-        <div className="row">
-          {gamesToDisplay.map((game) => (
-            <div key={game.id} className="h-100 col-sm-12 col-md-6 col-lg-3  mb-2 ">
-              <Card className={` ${Styles.gamecard} overflow-hidden `} >
-                <Link to={`/Product-details/${game.id}`} className='text-decoration-none'>
-                  <Card.Img variant="top" className={`${Styles.img} `} style={{ height: '10rem', objectFit: 'cover' }} src={game.imageUrl} />
-                </Link>
-                <Card.Body>
-                  <Card.Title className='text-bold'><h6 className='text-main'>{game.title}</h6></Card.Title>
-                  <Card.Title ><p>{game.price}</p></Card.Title>
-                  <Button variant="" className={`btn ${Styles.Game} w-100`} onClick={() => {
-                    handleGames(`${game.title} added to cart`)
-                  }} >Add +</Button>
-                </Card.Body>
-              </Card>
 
-            </div>
-          ))}
-          <button className="btn  w-100 mb-5" onClick={() => {
-            NavigateToGames()
-          }}>Show More +</button>
+
+      {/* //NOTE -Helmet  */}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>GAMES🎯</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
+
+      <div className="container">
+        <h1 className='text-white mb-5'>Our Games</h1>
+
+        <div className="row">
+
+        {gameData.slice(0, numToShow).filter(game => game.title.toLowerCase().includes(titleFilter.toLowerCase())
+  && ((priceFilter.min === '' || parseFloat(game.price) >= parseFloat(priceFilter.min))
+    && (priceFilter.max === '' || parseFloat(game.price) <= parseFloat(priceFilter.max)))).map((game) => (
+                <div key={game.id} className="h-100 col-sm-12 col-md-6 col-lg-3  mb-2 ">
+                  <Card className={` ${Styles.gamecard} overflow-hidden `} >
+                    <Link to={`/Product-details/${game._id}`} className='text-decoration-none'>
+                      <Card.Img variant="top" className={`${Styles.img} `} style={{ height: '10rem', objectFit: 'cover' }} src={game.imageURL} />
+                    </Link>
+                    <Card.Body>
+                      <Card.Title className='text-bold'><h6 className='text-main'>{game.title}</h6></Card.Title>
+                      <Card.Title ><p>{game.price} $</p></Card.Title>
+
+
+
+                      <Button
+                        variant=""
+                        className={`btn ${Styles.Game} w-100`}
+                        onClick={() => {
+
+                          createCart(game._id);
+
+                          const existingGame = cartGames.find((cartGame) => cartGame._id === game._id);
+                          if (existingGame) {
+                            // If the game already exists in the cart, update its count
+                            existingGame.count += 1;
+                            handleGames('Game already exists')
+
+                          } else {
+                            // If the game doesn't exist in the cart, add it
+                            countIncrease()
+                            cartGames.push(game);
+                            handleGames(`${game.title} added to cart`);
+                            addGameToCart(game._id, game)
+                          }
+
+                          console.log(cartGames);
+                        }}
+                      >
+                        Add +
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </div>
+              ))}
+              <Button
+  variant=""
+  className={`btn w-100 mt-3`}
+  onClick={() => setNumToShow(numToShow + 4)}
+>
+  Show More
+</Button>
         </div>
-      </div>
+      </div >
     </>
   );
 }
 
-export default Games;
+export default FirstGames;
 
 
+// information
+// note- update password button
+// note- delete account button
+//  orders
+// note- wishlist
