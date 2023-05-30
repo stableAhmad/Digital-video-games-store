@@ -9,6 +9,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'; // Replace 'faIconN
 import axios from 'axios';
 export default function Orders() {
 
+    let { userData } = useContext(CartContext);
 
 
     let [orders, setOrders] = useState([])
@@ -35,7 +36,7 @@ export default function Orders() {
             {/* //NOTE -Network Detect */}
             <Offline><div className={`${styles.Network} text-white rounded border m-3 p-2`}>offline</div></Offline>
 
-            <h1 className="text-white">orders</h1>
+            <h1 className="text-main text-center">ORDERS</h1>
 
             <div className="container">
                 <div className="row">
@@ -54,18 +55,7 @@ export default function Orders() {
                                         </div>
                                         <div className="d-flex align-items-center">
                                             <p className="text-white mx-2 mb-0">{game.count}</p>
-                                            <button
-                                                className="btn btn-danger mx-1"
-                                                onClick={() => {
-                                                    countDecrease()
-                                                    handleDecrement(game, index)
-                                                }
 
-
-                                                } // Pass the game ID to the handleDecrement function
-                                            >
-                                                <FontAwesomeIcon icon={faTrash} style={{ color: "#222" }} />
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -76,16 +66,9 @@ export default function Orders() {
                                     <p>No items in the orders</p>
                                 )}
 
-                            {/* Checkout button */}
 
-                            {orders && orders.length > 0 && (<div className="text-center mt-4">
-                                <button className="btn  w-100" onClick={() => {
-                                    checkOut()
-                                    setordersItemsCount(0)
 
-                                }}>Checkout</button>
-                            </div>)
-                            }
+
 
 
                         </div>
