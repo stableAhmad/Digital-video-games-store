@@ -43,9 +43,11 @@ export default function Login() {
 
     let { data } = await axios.post(`http://localhost:4000/app2/${values.email}'`, values).catch((errr) => {
 
-      toastMessage(`Login Failed 👎`)
-      console.log(JSON.stringify(data));
-
+    if(!data){
+       toastMessage(`Login Failed 👎`)
+       console.log(data);
+    }
+    console.log(data);
     })
     if (data) {
       toastMessage(`Login Succeeded 👍`)

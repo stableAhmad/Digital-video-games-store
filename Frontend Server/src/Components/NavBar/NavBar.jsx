@@ -52,7 +52,7 @@ function NavBar() {
                 <Form.Control
                   type="search"
                   placeholder="Search"
-                  className={`me-2 border-0 ${styles.searchColor}  `}
+                  className={`me-2 border-0 ${styles.searchColor} bg-transparent `}
                   aria-label="Search"
                 />
                 <Button variant="outline-danger" className='mx-2'>Search</Button>

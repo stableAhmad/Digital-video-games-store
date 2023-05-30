@@ -20,28 +20,12 @@ import CounterContextProvider from './Context/CounterContext';
 import CartContextProvider from './Context/CartContext';
 import { Offline, Online } from "react-detect-offline";
 import Orders from "./Components/Orders/Orders";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useNavigate } from 'react-router-dom';
-import UserService from "./keycloak";
-
-
-const keycloak = UserService._kc
-const PrivateRoute = ({ element: Component, ...rest }) => {
-  const navigate = useNavigate();
-  const authenticated = UserService.isLoggedIn();
-
-  if (!authenticated) {
-    return navigate('/login');
-
-  }
-
-  return <Component {...rest} />;
-};
 
 
 
 
-
-const kc = UserService._kc
 function App() {
 
 
@@ -49,17 +33,17 @@ function App() {
   let routers = createBrowserRouter([{
     path: "", element: <Layout />, children: [
 
-      { index: true, element: <Home /> },
+      { index: true, element:<ProtectedRoute><Home /></ProtectedRoute>  },
 
-      { path: "/games", element: <Games /> },
-      { path: "/Product-details/:id", element: <ProductDetails /> },
-      { path: "/software", element: <Software /> },
-      { path: "/cart", element: <Cart /> },
+      { path: "/games", element: <ProtectedRoute><Games /></ProtectedRoute> },
+      { path: "/Product-details/:id", element:<ProtectedRoute><ProductDetails /></ProtectedRoute>  },
+      { path: "/software", element: <ProtectedRoute><Software /></ProtectedRoute> },
+      { path: "/cart", element: <ProtectedRoute><Cart /> </ProtectedRoute>},
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
-      { path: "/PopularNow", element: <PopularNow /> },
-      { path: "/profile", element: <Profile /> },
-      { path: "/orders", element: <Orders /> },
+      { path: "/PopularNow", element:<ProtectedRoute><PopularNow /></ProtectedRoute>  },
+      { path: "/profile", element: <ProtectedRoute><Profile /> </ProtectedRoute>},
+      { path: "/orders", element:<ProtectedRoute><Orders /></ProtectedRoute>  },
 
       { path: "*", element: <NotFound /> },
     ]
