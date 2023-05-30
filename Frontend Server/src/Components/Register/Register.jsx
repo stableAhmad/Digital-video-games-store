@@ -143,6 +143,7 @@ let formik = useFormik({
           value={formik.values.phoneNumber.countryCode}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          className='form-control mb-2 col-md-3'
         />
         {formik.touched.phoneNumber?.countryCode && formik.errors.phoneNumber?.countryCode && (
           <div>{formik.errors.phoneNumber.countryCode}</div>
@@ -157,6 +158,7 @@ let formik = useFormik({
           value={formik.values.phoneNumber.number}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          className='form-control mb-5 col-md-9'
         />
         {formik.touched.phoneNumber?.number && formik.errors.phoneNumber?.number && (
           <div>{formik.errors.phoneNumber.number}</div>

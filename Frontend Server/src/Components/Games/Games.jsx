@@ -131,15 +131,15 @@ function Games() {
 
   useEffect(() => {
     axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
-  
+
       setCartItemsCount(response.data.cart.length)
     });
   }, [cartItemsCount]);
-  
-  
-  
-  
-  
+
+
+
+
+
 
   const { getData, gameData, userData } = useContext(CartContext)
   console.log(userData);

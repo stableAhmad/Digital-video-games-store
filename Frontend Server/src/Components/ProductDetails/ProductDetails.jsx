@@ -5,6 +5,7 @@ import Styles from './ProductDetails.module.css';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../../Context/CartContext';
+import axios from 'axios';
 
 // display a toast message when the user clicks on the Add to cart button
 const handleGames = (msg) => {
@@ -28,11 +29,49 @@ const toastMessage = (msg) => {
 
 function ProductDetails() {
 
+
+
+  const { cartItemsCount, setCartItemsCount } = useContext(CartContext);
+  let { createCart, gameData, getData, userData } = useContext(CartContext)
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
+
+      setCartItemsCount(response.data.cart.length)
+    });
+  }, [cartItemsCount]);
+
+
+
+
+
+
+
+
+
+  async function addGameToCart(game) {
+    try {
+      let response = await axios.post(`http://localhost:4000//app1/add/relation/cart/${userData}`, game);
+      console.log(response);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
   // Get the id parameter from the URL using the useParams hook
   const { id } = useParams();
   console.log(id)
   //NOTE - Initialize useContext
-  let { createCart, gameData, getData } = useContext(CartContext)
   let [Id, setID] = useState('')
   // Find the game object with the matching id from the gamesList array
   console.log(gameData, "abdo  ");
@@ -64,6 +103,7 @@ function ProductDetails() {
               <Button variant="" onClick={() => {
                 handleGames(`${gamesList.title} added to cart`)
                 createCart(gamesList.id)
+                addGameToCart(gamesList)
               }}>Add to cart</Button>
             </div>
           </div>
