@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 
 
@@ -12,16 +12,16 @@ export default function CounterContextProvider(props) {
     let [userData, setUserData] = useState(null);
 
 
-  
-  function saveUserData() {
-    setUserData(localStorage.getItem("userToken"));
-   console.log(userData);
-  }
-  useEffect(() => {
-    if (localStorage.getItem("userToken")) {
-      saveUserData();
+
+    function saveUserData() {
+        setUserData(localStorage.getItem("userToken"));
+        console.log(userData);
     }
-  }, [saveUserData]);
+    useEffect(() => {
+        if (localStorage.getItem("userToken")) {
+            saveUserData();
+        }
+    }, [saveUserData]);
 
 
 
@@ -30,6 +30,7 @@ export default function CounterContextProvider(props) {
     const [cartGames, setCartGames] = useState([])
     let [cartItemsCount, setCartItemsCount] = useState(0)
     const [gameData, setGameData] = useState([])
+    let [cartList, setCartList] = useState([])
     async function getData() {
         let { data } = await axios.get("http://localhost:4000/app1/get/all/full")
         console.log(data);
@@ -47,7 +48,21 @@ export default function CounterContextProvider(props) {
         setCartItemsCount(--cartItemsCount)
     }
 
-    return <CartContext.Provider value={{ cart, createCart, cartGames, setCartGames, cartItemsCount, countIncrease, countDecrease, userData, setUserData, saveUserData, gameData, getData }}>
+    let array = []
+    async function displayCart() {
+        let data = await axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then(
+            array = data.data.cart,
+            setCartList(array),
+            console.log(data)
+        )
+
+    }
+
+
+
+  
+
+    return <CartContext.Provider value={{ cart, createCart, cartGames, setCartGames, cartItemsCount, countIncrease, countDecrease, userData, setUserData, saveUserData, gameData, getData, cartList, displayCart,setCartGames }}>
 
 
         {props.children}

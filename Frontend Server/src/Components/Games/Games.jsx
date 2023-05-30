@@ -130,9 +130,9 @@ function Games() {
 
 
 
-  async function addGameToCart(gameId) {
+  async function addGameToCart(gameId, game) {
     try {
-      let response = await axios.post(`http://localhost:4000//app1/add/relation/cart/${userData}/${gameId}`);
+      let response = await axios.post(`http://localhost:4000//app1/add/relation/cart/${userData}`, game);
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -246,7 +246,7 @@ function Games() {
                             countIncrease()
                             cartGames.push(game);
                             handleGames(`${game.title} added to cart`);
-                            addGameToCart(game._id)
+                            addGameToCart(game._id, game)
                           }
 
                           console.log(cartGames);
