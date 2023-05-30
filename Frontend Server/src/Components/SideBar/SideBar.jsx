@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaTachometerAlt, faHouse,FaFire, FaCheck , FaList, FaUser, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import styles from '../SideBar/SideBar.module.css';
+import { CartContext } from '../../Context/CartContext';
 
 export default function Sidebar() {
 
+  let {  userData } = useContext(CartContext);
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showIconsOnly, setShowIconsOnly] = useState(false);
@@ -68,12 +70,15 @@ export default function Sidebar() {
           </li>
         </ul>
       </div>
+      {userData ?
       <div className={styles.sidebarFooter}>
         <Link to="/profile" className={styles.sidebarLink}>
           <FaUser className={styles.sidebarIcon} />
           {!showIconsOnly && <span className={styles.sidebarText}>My Account</span>}
+        
         </Link>
       </div>
+       : null}
     </div>
   );
 }

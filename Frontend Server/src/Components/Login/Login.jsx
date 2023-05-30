@@ -43,12 +43,12 @@ export default function Login() {
 
     let {data} = await axios.post(`http://localhost:4000/app2/${values.email}'`, values).catch((errr)=>{
     
-        toastMessage(`Registration Failed 👎`)
+        toastMessage(`Login Failed 👎`)
         console.log(JSON.stringify(data));
 
     })
     if(data){
-      toastMessage(`Registration Succeeded 👍`)
+      toastMessage(`Login Succeeded 👍`)
        navigate('/');
        localStorage.setItem('userToken',values.email)
        saveUserData(values.email)
