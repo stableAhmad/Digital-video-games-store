@@ -20,18 +20,9 @@ import CounterContextProvider from './Context/CounterContext';
 import CartContextProvider from './Context/CartContext';
 
 import Orders from "./Components/Orders/Orders";
-import keycloak from './keycloak';
+
 
 function App() {
-
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
-      setAuthenticated(authenticated);
-    });
-  }, []);
-
 
 
 
