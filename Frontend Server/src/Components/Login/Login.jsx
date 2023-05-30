@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Login.module.css';
 import { Formik, useFormik } from 'formik';
@@ -12,7 +12,7 @@ import { CartContext } from '../../Context/CartContext';
 // import toast, { Toaster } from 'react-hot-toast';
 
 export default function Login() {
-   let {saveUserData} = useContext(CartContext)
+  let { saveUserData, cartItemsCount, setCartItemsCount } = useContext(CartContext)
 
   let navigate = useNavigate();
 
@@ -41,18 +41,18 @@ export default function Login() {
 
   async function handleLogin(values) {
 
-    let {data} = await axios.post(`http://localhost:4000/app2/${values.email}'`, values).catch((errr)=>{
-    
-        toastMessage(`Registration Failed 👎`)
-        console.log(JSON.stringify(data));
+    let { data } = await axios.post(`http://localhost:4000/app2/${values.email}'`, values).catch((errr) => {
+
+      toastMessage(`Login Failed 👎`)
+      console.log(JSON.stringify(data));
 
     })
-    if(data){
-      toastMessage(`Registration Succeeded 👍`)
-       navigate('/');
-       localStorage.setItem('userToken',values.email)
-       saveUserData(values.email)
-     
+    if (data) {
+      toastMessage(`Login Succeeded 👍`)
+      navigate('/');
+      localStorage.setItem('userToken', values.email)
+      saveUserData(values.email)
+
     }
   }
 

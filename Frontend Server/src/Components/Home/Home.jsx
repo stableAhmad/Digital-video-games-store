@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import GameSlider from '../GameSlider/GameSlider'
 import Games from '../Games/Games'
 import FirstGames from '../FirstGames/FirstGames'
 import { Offline, Online } from "react-detect-offline";
 import styles from '../Home/Home.module.css';
 import { Helmet } from "react-helmet";
+import axios from 'axios';
+import { CartContext } from '../../Context/CartContext';
 
 export default function Home() {
+
+  const { cartGames, userData, gameData, cartList, displayCart, setCartGames, countDecrease, cartItemsCount, setCartItemsCount } = useContext(CartContext);
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
+
+      setCartItemsCount(response.data.cart.length)
+    });
+  }, [cartItemsCount]);
+
+
+
+
+
+
+
   return (
     <>
       {/* //NOTE -Helmet  */}

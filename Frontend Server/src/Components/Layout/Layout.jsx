@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import SideBar from '../SideBar/SideBar';
 import NavBar from '../NavBar/NavBar';
@@ -6,7 +6,7 @@ import styles from '../Layout/Layout.module.css';
 import { CartContext } from '../../Context/CartContext';
 
 export default function Layout() {
-  let {setUserData,userData} = useContext(CartContext)
+  let { setUserData, userData } = useContext(CartContext)
   let naigate = useNavigate();
 
 

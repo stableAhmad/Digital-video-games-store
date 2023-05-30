@@ -7,6 +7,8 @@ import ProductDetails from '../ProductDetails/ProductDetails';
 import { Link } from "react-router-dom";
 import { CartContext } from '../../Context/CartContext';
 import { Helmet } from "react-helmet";
+import axios from 'axios';
+
 
 
 
@@ -125,12 +127,33 @@ export const gamesList = [
 function Games() {
 
 
+  const { cartItemsCount, setCartItemsCount } = useContext(CartContext);
 
-  let { getData, gameData } = useContext(CartContext)
+  useEffect(() => {
+    axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
+
+      setCartItemsCount(response.data.cart.length)
+    });
+  }, [cartItemsCount]);
 
 
 
 
+
+
+  const { getData, gameData, userData } = useContext(CartContext)
+  console.log(userData);
+
+
+
+  async function addGameToCart(gameId, game) {
+    try {
+      let response = await axios.post(`http://localhost:4000//app1/add/relation/cart/${userData}`, game);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
 
@@ -166,7 +189,7 @@ function Games() {
   const [titleFilter, setTitleFilter] = useState('');
   const [priceFilter, setPriceFilter] = useState({ min: '', max: '' });
 
-  var count = 0
+
   let { createCart, cartGames, countIncrease } = useContext(CartContext)
 
 
@@ -239,6 +262,7 @@ function Games() {
                             countIncrease()
                             cartGames.push(game);
                             handleGames(`${game.title} added to cart`);
+                            addGameToCart(game._id, game)
                           }
 
                           console.log(cartGames);
