@@ -11,6 +11,8 @@ import axios from 'axios';
 
 
 
+
+
 export const gamesList = [
   {
     id: 1,
@@ -125,6 +127,20 @@ export const gamesList = [
 function Games() {
 
 
+  const { cartItemsCount, setCartItemsCount } = useContext(CartContext);
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
+
+      setCartItemsCount(response.data.cart.length)
+    });
+  }, [cartItemsCount]);
+
+
+
+
+
+
   const { getData, gameData, userData } = useContext(CartContext)
   console.log(userData);
 
@@ -173,7 +189,7 @@ function Games() {
   const [titleFilter, setTitleFilter] = useState('');
   const [priceFilter, setPriceFilter] = useState({ min: '', max: '' });
 
-  var count = 0
+
   let { createCart, cartGames, countIncrease } = useContext(CartContext)
 
 

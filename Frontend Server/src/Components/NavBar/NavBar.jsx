@@ -1,5 +1,5 @@
 import styles from './NavBar.module.css'
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
@@ -16,8 +16,12 @@ function NavBar() {
   let navigate = useNavigate();
 
   // Get the cartItemsCount and user data from the CartContext
-  let { cartItemsCount, saveUserData, userData } = useContext(CartContext);
+  let { cartItemsCount, saveUserData, userData,setCartItemsCount } = useContext(CartContext);
 
+
+  useEffect(() => {
+
+  }, [cartItemsCount])
   // Function to handle user logout
   function handleLogout() {
     // Remove the user token from the local storage

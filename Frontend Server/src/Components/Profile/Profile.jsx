@@ -15,18 +15,18 @@ export default function Profile() {
 
 
   let { saveUserData } = useContext(CartContext);
-    // Function to handle user logout
-    function handleLogout() {
-      // Remove the user token from the local storage
-      localStorage.removeItem('userToken');
-      // Clear the user data in the CartContext
-      saveUserData(null);
-      // Navigate to the Login page
-      navigate('/Login');
-    }
+  // Function to handle user logout
+  function handleLogout() {
+    // Remove the user token from the local storage
+    localStorage.removeItem('userToken');
+    // Clear the user data in the CartContext
+    saveUserData(null);
+    // Navigate to the Login page
+    navigate('/Login');
+  }
 
 
-    //NOTE - Display toastMessage
+  //NOTE - Display toastMessage
   const toastMessage = (msg) => {
     toast.success(msg, {
       position: "top-center",
@@ -41,15 +41,27 @@ export default function Profile() {
     });
   }
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/app2/${userData}`)
-      .then((response) => {
-        setUser(response.data);
-      });
-  }, []);
 
- // useEffect(() => {}, [user]);
+  useEffect(() => {
+
+  }, [userData])
+
+  useEffect(() => {
+
+    try {
+      axios
+        .get(`http://localhost:4000/app2/${userData}`)
+        .then((response) => {
+          setUser(response.data);
+        });
+    }
+    catch (e) {
+      console.log(e);
+    }
+
+  }, [userData]);
+
+  // useEffect(() => {}, [user]);
 
   const handleEmailChange = (e) => {
     setNewEmail(e.target.value);
@@ -78,57 +90,57 @@ export default function Profile() {
 
   return (
     <>
-       <div className="container mt-5 text-white">
-      <div className="row text-white ml-3">
-        <div className="col-md-12">
-          <h2>User Profile</h2>
-          <table className="table  text-white">
-            <tbody>
-              <tr>
-                <td>Username:</td>
-                <td>{user.firstName}</td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <td>
-                  {isEditing ? (
-                    <>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder={user.email}
-                        value={newEmail}
-                        onChange={handleEmailChange}
-                      />
-                      <button className="btn btn-sm btn-success ml-2" onClick={handleSaveClick} >
-                        Save
-                      </button>
-                      <button className="btn btn-sm btn-secondary ml-2" onClick={handleCancelClick}>
-                        Cancel
-                      </button>
-                    </>
-                  ) : ( 
-                    <>
-                      {user.email}
-                      <button className="btn btn-sm btn-primary ml-2" onClick={handleEditClick}>
-                        Edit
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-              <tr>
-                <td>Region:</td>
-                <td>{user.country}</td>
-              </tr>
-              <tr>
-                <td>Date:</td>
-                <td>{user.dateOfBirth}</td>
-              </tr>
-            </tbody>
-          </table>
+      <div className="container mt-5 text-white">
+        <div className="row text-white ml-3">
+          <div className="col-md-12">
+            <h2>User Profile</h2>
+            <table className="table  text-white">
+              <tbody>
+                <tr>
+                  <td>Username:</td>
+                  <td>{user.firstName}</td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td>
+                    {isEditing ? (
+                      <>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder={user.email}
+                          value={newEmail}
+                          onChange={handleEmailChange}
+                        />
+                        <button className="btn btn-sm btn-success ml-2" onClick={handleSaveClick} >
+                          Save
+                        </button>
+                        <button className="btn btn-sm btn-secondary ml-2" onClick={handleCancelClick}>
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        {user.email}
+                        <button className="btn btn-sm btn-primary ml-2" onClick={handleEditClick}>
+                          Edit
+                        </button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Region:</td>
+                  <td>{user.country}</td>
+                </tr>
+                <tr>
+                  <td>Date:</td>
+                  <td>{user.dateOfBirth}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
- </> );
+    </>);
 }

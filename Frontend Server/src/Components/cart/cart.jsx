@@ -9,7 +9,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'; // Replace 'faIconN
 import axios from 'axios';
 
 export default function Cart() {
-  const { cartGames, userData, gameData, cartList, displayCart, setCartGames } = useContext(CartContext);
+  const { cartGames, userData, gameData, cartList, displayCart, setCartGames, countDecrease, cartItemsCount, setCartItemsCount } = useContext(CartContext);
 
   let [cart, setCart] = useState([]);
   let [cartDetails, setCartDetails] = useState(null);
@@ -29,10 +29,13 @@ export default function Cart() {
   useEffect(() => {
     axios.get(`http://localhost:4000/app1/get/relation/${userData}`).then((response) => {
       setCart(response.data.cart);
+      setCartItemsCount(response.data.cart.length)
     });
-  }, []);
+  }, [userData]);
 
+  useEffect(() => {
 
+  }, [cartItemsCount])
 
   { console.log(cart) }
 
@@ -106,7 +109,13 @@ export default function Cart() {
                       <p className="text-white mx-2 mb-0">{game.count}</p>
                       <button
                         className="btn btn-danger mx-1"
-                        onClick={() => handleDecrement(game, index)} // Pass the game ID to the handleDecrement function
+                        onClick={() => {
+                          countDecrease()
+                          handleDecrement(game, index)
+                        }
+
+
+                        } // Pass the game ID to the handleDecrement function
                       >
                         <FontAwesomeIcon icon={faTrash} style={{ color: "#222" }} />
                       </button>
@@ -125,6 +134,8 @@ export default function Cart() {
               {cart && cart.length > 0 && (<div className="text-center mt-4">
                 <button className="btn  w-100" onClick={() => {
                   checkOut()
+                  setCartItemsCount(0)
+
                 }}>Checkout</button>
               </div>)
               }
