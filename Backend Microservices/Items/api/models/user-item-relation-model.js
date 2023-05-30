@@ -141,7 +141,7 @@ async function deleteFromCart(email, game){
   try{
     let target = await relationDBClient.client.db("user-item-relations").collection('relation').findOne({email : email})
     let newCart = target.cart
-    let index = newCart.indexOf(id)
+    let index = newCart.indexOf(game._id)
     newCart.splice(index, 1)
     await relationDBClient.client.db("user-item-relations").collection('relation').updateOne(
       { email: email },
