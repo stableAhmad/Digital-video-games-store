@@ -63,9 +63,9 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/multilevel" activeClassName="active" className={styles.sidebarLink}>
+            <NavLink to="/orders" activeClassName="active" className={styles.sidebarLink}>
               <FaList className={styles.sidebarIcon} />
-              {!showIconsOnly && <span className={styles.sidebarText}>Multi Level</span>}
+              {!showIconsOnly && <span className={styles.sidebarText}>Orders</span>}
             </NavLink>
           </li>
         </ul>

@@ -20,7 +20,18 @@ import CounterContextProvider from './Context/CounterContext';
 import CartContextProvider from './Context/CartContext';
 import { Offline, Online } from "react-detect-offline";
 import Orders from "./Components/Orders/Orders";
+import keycloak from './keycloak';
+
 function App() {
+
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
+      setAuthenticated(authenticated);
+    });
+  }, []);
+
 
 
 
@@ -40,8 +51,25 @@ function App() {
       { path: "*", element: <NotFound /> },
     ]
   }])
+
+
+
+
+
   return (
     <>
+
+      <div>
+        {authenticated ? (
+          console.log("you are")
+        ) : (
+          console.log("you are not ")
+        )}
+      </div>
+
+
+
+
       <ToastContainer ></ToastContainer>
       <CartContextProvider>
         <CounterContextProvider>

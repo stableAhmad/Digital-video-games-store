@@ -39,35 +39,35 @@ export default function CounterContextProvider(props) {
     useEffect(() => {
         console.log('ehabtarekhelmhy');
         saveUserData();
-        getCart();
+        // getCart();
     }, []);
 
 
 
-    async function getCart() {
+    // async function getCart() {
 
-        let response = await displayCart();
-        console.log(response);
-        console.log(response.data.cart);
-        if (response?.data?.status === 200) {
-            let tall = response?.data?.cart.length;
-            console.log(tall);
-            setCartItemsCount(tall);
-        }
-    }
+    //     let response = await displayCart();
+    //     console.log(response);
+    //     console.log(response.data.cart);
+    //     if (response?.data?.status === 200) {
+    //         let tall = response?.data?.cart.length;
+    //         console.log(tall);
+    //         setCartItemsCount(tall);
+    //     }
+    // }
 
-    async function displayCart() {
-        console.log(userData);
-        return axios
-            .get(`http://localhost:4000/app1/get/relation/${userData}`)
-            .then((response) => response)
-            .catch((error) => error);
-    }
+    // async function displayCart() {
+    //     console.log(userData);
+    //     return axios
+    //         .get(`http://localhost:4000/app1/get/relation/${userData}`)
+    //         .then((response) => response)
+    //         .catch((error) => error);
+    // }
 
 
-    useEffect(() => {
-        getData();
-    }, []);
+    // useEffect(() => {
+    //     getData();
+    // }, []);
 
     return (
         <CartContext.Provider
