@@ -20,7 +20,8 @@ To run the frontend server, you will need to have Node.js and npm installed on y
 
 The frontend server is configured to connect to a backend API server at `http://localhost:4000` by default. If you need to change this, you can modify the `API_BASE_URL` constant in `src/utils/constants.js`.
 
-### Prototype
+## Prototype
+
    ![image](https://github.com/stableAhmad/Level-up-game-marketplace/assets/106041930/cf647e82-b901-4ec8-a670-0b9c70ced445)
 
 
