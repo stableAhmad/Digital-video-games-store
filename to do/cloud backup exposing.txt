@@ -1,0 +1,9 @@
+npm install express-ipfilter
+
+const ipfilter = require('express-ipfilter').IpFilter;
+
+// Array of allowed IP addresses
+const allowedIPs = [ '127.0.0.1', '192.168.1.1' ];
+
+// Configure the IP filter middleware
+app.use(ipfilter(allowedIPs, { mode: 'allow' }));

@@ -1,0 +1,129 @@
+https://github.com/keycloak/keycloak/releases/download/21.1.1/keycloak-21.1.1.zip
+
+-bin
+-git-bash
+-./kc.sh start-dev
+//default port 8080
+
+vitaminb12
+passpass
+
+-------------------------------------------------------------
+client id : react-client   //same as the cliend id in the react app
+client name : react-client-name
+react related
+	root url : http://localhost:3000
+	valid redirect : http://localhost:3000/*
+	web origins : http://localhost:3000
+ 
+---------------------------------------------------------------
+
+npm install @react-keycloak/web keycloak-js
+
+-------------------------------------------------------------------------
+
+
+create keycloak.js
+
+import Keycloak from 'keycloak-js';
+
+const keycloak = new Keycloak({
+  url: 'http://localhost:8080/',
+  realm: 'master',
+  clientId: 'react-client',
+});
+
+export default keycloak;
+
+
+
+
+-------------------------------------------------------------------------
+
+import React, { useState, useEffect } from 'react';
+import keycloak from './keycloak';
+
+function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    keycloak.init({ onLoad: 'login-required' }).then(authenticated => {
+      setAuthenticated(authenticated);
+    });
+  }, []);
+
+  return (
+    <div>
+      {authenticated ? (
+        <p>You are authenticated!</p>
+      ) : (
+        <p>Please log in to continue.</p>
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+
+----------------------------------------------------------
+
+
+
+
+
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import keycloak from './keycloak';
+
+function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+     render={props => keycloak.authenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        )}
+    />
+  );
+}
+
+export default PrivateRoute;
+
+
+
+--------------------------------------------------
+login page after taking their credintials
+
+import React from 'react';
+import keycloak from './keycloak';
+
+function LoginPage() {
+  return (
+    <div>
+      <h2>Login</h2>
+      <button onClick={() => keycloak.login()}>Login with Keycloak</button>
+    </div>
+  );
+}
+
+export default LoginPage;
+
+
+--------------------------
+
+home page
+
+import React from 'react';
+
+function HomePage() {
+  return (
+    <div>
+      <h2>Home</h2>
+      <p>Welcome to the home page!</p>
+    </div>
+  );
+}
+
+export default HomePage;

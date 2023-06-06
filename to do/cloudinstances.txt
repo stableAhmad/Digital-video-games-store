@@ -1,0 +1,164 @@
+db.item.insertOne({
+  "title": "Example Game",
+  "price": 49.99,
+  "developer": "Example Dev",
+  "publisher": "Example Pub",
+  "sold_count": 500,
+  "release_date": ISODate("2022-01-01T00:00:00Z"),
+  "available": true,
+  "off": 0.1,
+  "edition": "Standard",
+  "active": true,
+  "description": "This is an example game description",
+  "requirements": {
+    "cpu": "Intel Core i5",
+    "graphics": "Nvidia GTX 1050",
+    "memory": "8GB",
+    "OS": "Windows 10",
+    "storage": 50,
+    "storage_unit": "GB"
+  },
+  "guide": "https://example.com/game/guide",
+  "platform": "pc",
+  "genres": ["action", "role-playing", "strategy"],
+  "currency": "USD",
+  "languages": ["EN", "FR"]
+})
+
+
+
+db.item.insertOne({
+  "title": "Amazing Adventure",
+  "price": 29.99,
+  "developer": "Adventure Developers",
+  "publisher": "PublishCo",
+  "sold_count": 1000,
+  "release_date": ISODate("2022-01-01T00:00:00Z"),
+  "available": true,
+  "off": 0.15,
+  "edition": "Deluxe",
+  "active": true,
+  "description": "Embark on an epic adventure in this thrilling new game!",
+  "requirements": {
+    "cpu": "Intel Core i7",
+    "graphics": "Nvidia RTX 3080",
+    "memory": "16GB",
+    "OS": "Windows 11",
+    "storage": 100,
+    "storage_unit": "GB"
+  },
+  "guide": "https://adventuredevelopers.com/guide",
+  "platform": "pc",
+  "genres": ["adventure", "role-playing", "puzzle"],
+  "currency": "USD",
+  "languages": ["EN", "ES"]
+})
+
+
+db.item.insertOne({
+  "title": "ddddddddddddddddddddddddddddddddd",
+  "price": 49.99,
+  "developer": "Example Dev",
+  "publisher": "Example Pub",
+  "sold_count": 500,
+  "release_date": ISODate("2022-01-01T00:00:00Z"),
+  "available": true,
+  "off": 0.1,
+  "edition": "Standard",
+  "active": true,
+  "description": "This is an example game description",
+  "requirements": {
+    "cpu": "Intel Core i5",
+    "graphics": "Nvidia GTX 1050",
+    "memory": "8GB",
+    "OS": "Windows 10",
+    "storage": 50,
+    "storage_unit": "GB"
+  },
+  "guide": "https://example.com/game/guide",
+  "platform": "pc",
+  "genres": ["action", "role-playing", "strategy"],
+  "currency": "USD",
+  "languages": ["EN", "FR"],
+   
+})
+
+
+git add --all ':!./server/databases/item_db/WiredTiger.lock'
+
+
+mongosh "mongodb+srv://LEVEL-UP-Game-marketplace.mongodb.net/items" --username vitaminb12
+
+
+to connect to it from the mongosh
+
+mongosh "mongodb+srv://level-up-game-marketpla.tjee4kg.mongodb.net/test" --username vitaminb12
+
+
+db.runCommand({
+  collMod: 'relation',
+  validator: {
+    $jsonSchema: {
+      type: 'object',
+     properties: {
+      email: {
+        bsonType: "string"
+      },
+      cart: {
+        bsonType: "array"
+      },
+      order: {
+        bsonType: "array"
+      },
+      favlist: {
+        bsonType: "array"
+      }
+    }
+	}
+	}})
+
+
+db.createCollection("relation", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+
+      properties: {
+        email: {
+          bsonType: "string"
+        },
+        cart: {
+          bsonType: "array"
+
+        },
+	wishlist :{
+	bsonType : "array"
+	},
+	orders:{
+	bsonType:"array"
+	}
+      }
+    }
+  }
+})
+
+db.createCollection("users", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["name"],
+      properties: {
+        name: {
+          bsonType: "string"
+        },
+        age: {
+          bsonType: "int",
+          minimum: 0,
+          maximum: 120
+        }
+      }
+    }
+  }
+})
+
+db.getCollectionInfos({name: 'item', type: 'collection'})

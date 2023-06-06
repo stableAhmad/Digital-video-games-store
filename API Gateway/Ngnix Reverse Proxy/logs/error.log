@@ -73,3 +73,13 @@
 2023/05/29 05:28:49 [error] 21872#17832: *32 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: 127.0.0.1, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "localhost:4000"
 2023/05/29 05:56:15 [notice] 1100#8880: signal process started
 2023/05/29 17:25:26 [notice] 3640#12684: signal process started
+2023/05/29 18:16:44 [notice] 17300#17228: signal process started
+2023/05/29 18:20:20 [notice] 3884#16520: signal process started
+2023/05/29 18:23:33 [notice] 8764#16176: signal process started
+2023/05/29 18:25:40 [notice] 2232#18356: signal process started
+2023/05/29 18:50:20 [notice] 17844#18056: signal process started
+2023/05/29 18:58:14 [notice] 15312#17120: signal process started
+2023/05/29 19:04:07 [notice] 456#17776: signal process started
+2023/05/30 08:19:42 [notice] 8724#16848: signal process started
+2023/05/30 08:20:14 [error] 11532#16584: *1 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: 127.0.0.1, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/", host: "localhost:4000"
+2023/05/30 08:20:57 [notice] 10928#15852: signal process started

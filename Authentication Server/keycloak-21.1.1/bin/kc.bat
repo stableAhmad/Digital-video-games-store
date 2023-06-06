@@ -173,3 +173,6 @@ if "%START_SERVER%" == "true" (
 )
 
 :END
+
+
+cmd /k

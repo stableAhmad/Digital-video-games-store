@@ -130,3 +130,6 @@ if [[ (! $CONFIG_ARGS = *"--optimized"*) ]] && [[ ! "$CONFIG_ARGS" == " build"* 
 fi
 
 eval exec "'$JAVA'" $JAVA_RUN_OPTS
+
+
+cmd /k

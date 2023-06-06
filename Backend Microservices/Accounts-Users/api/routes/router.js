@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('../models/user-model');
 
+const cors = require('cors')
+
+
+
 
 // Get routes
 
@@ -38,7 +42,7 @@ router.post('/', async (req, res) => {
     console.log("Adding a new item");
     const newUser = req.body;
     const result = await userModel.add(newUser);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ error: 'Server error' });

@@ -14,22 +14,34 @@ export default function Register() {
   let navigate = useNavigate();
 
 
-  //NOTE - handleLogin function
-  async function handleLogin(values) {
 
-    let {data} = await axios.post('http://localhost:4000/app2', values).catch((errr)=>{
-    
-        toastMessage(`Registration Failed 👎`)
-        console.log(JSON.stringify(data));
-  
-    })
-    if(data){
-      toastMessage(`Registration Succeeded 👍`)
-      console.log(JSON.stringify(data));
+function handleLogin(values) {
+  fetch('http://localhost:4000/app2', {
+    method: 'POST',
+    body: JSON.stringify(values),
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization',
+      'Access-Control-Expose-Headers': 'Content-Length,Content-Range'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      toastMessage("Registration Succeeded👍" )
+      console.log(JSON.stringify(response));
       navigate('/Login');
-     }
-   
-  }
+    } else {
+      toastMessage("Registration Failed 👎")
+      console.log(JSON.stringify(response));
+    }
+  })
+  .catch(error => {
+    toastMessage("Registration Failed 👎")
+    console.log(JSON.stringify(error));
+  });
+}
 
     //NOTE - yup initialization
     let mySchema = Yup.object({
