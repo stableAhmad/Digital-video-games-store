@@ -49,6 +49,20 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Post route
+
+router.post('/:email', async (req, res) => {
+  try {
+    console.log("Checking if user exists");
+    const newUser = req.body;
+    const result = await userModel.validateUser(newUser.email, newUser.password);
+    res.json(result);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Server error' });
+  }
+  });
+
 // Put route
 
 router.put('/:email', async (req, res) => {

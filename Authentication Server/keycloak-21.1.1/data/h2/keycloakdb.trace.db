@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2023-05-29 14:03:01 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MIGRATION_MODEL" not found (this database is empty); SQL statement:
 SELECT ID, VERSION FROM MIGRATION_MODEL ORDER BY UPDATE_TIME DESC [42104-214]
@@ -41,3 +42,17 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at io.quarkus.runtime.Application.stop(Application.java:208)
 	at io.quarkus.runtime.Application.stop(Application.java:155)
 	at io.quarkus.runtime.ApplicationLifecycleManager$ShutdownHookThread.run(ApplicationLifecycleManager.java:431)
+=======
+2023-05-30 05:47:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MIGRATION_MODEL" not found (this database is empty); SQL statement:
+SELECT ID, VERSION FROM MIGRATION_MODEL ORDER BY UPDATE_TIME DESC [42104-214]
+2023-05-30 05:47:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOG" not found (this database is empty); SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOG [42104-214]
+2023-05-30 05:47:44 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOGLOCK" not found (this database is empty); SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42104-214]
+2023-05-30 05:47:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "DATABASECHANGELOG" not found; SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOG [42102-214]
+>>>>>>> d2866a7eaa84c2f3e644995b61c8b2edfc076cd3

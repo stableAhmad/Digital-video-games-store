@@ -1,0 +1,14 @@
+# Use the official Nginx image as the base image
+FROM nginx:1.21.0
+
+RUN mkdir -p ./conf/
+
+# Copy the custom Nginx configuration file
+COPY . .
+
+
+# Expose the Nginx HTTP and HTTPS ports
+EXPOSE 4000
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

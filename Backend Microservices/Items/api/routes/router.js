@@ -58,41 +58,24 @@ router.get('/get/relation/:email', async (req, res) => {
 
 
 
-router.post('/add/relation/order/:email/:id', async (req, res)=>{
+router.post('/add/relation/order/:email', async (req, res)=>{
   console.log(req.params.email)
-  const back = await relationModel.addOrder(req.params.email, req.params.id)
+  const back = await relationModel.addOrder(req.params.email, req.body)
   res.send(back)
 })
 
 
 
-router.post('/add/relation/cart/:email/:id', async (req, res)=>{
-  const back = await relationModel.addCart(req.params.email, req.params.id)
+router.post('/add/relation/cart/:email', async (req, res)=>{
+  const back = await relationModel.addCart(req.params.email, req.body)
   res.send(back)
 })
 
-
-router.post('/add/relation/wishlist/:email/:id', async (req, res)=>{
-  const back = await relationModel.addWishlist(req.params.email, req.params.id)
-  res.send(back)
-})
 
 
 router.delete('/delete/relation/cart/:email/:id', async (req, res)=>{
   const back = await relationModel.deleteFromCart(req.params.email, req.params.id)
   res.send(back)
 })
-
-router.delete('/delete/relation/orders/:email/:id', async (req, res)=>{
-  const back = await relationModel.deleteFromOrders(req.params.email, req.params.id)
-  res.send(back)
-})
-
-
-router.delete('/delete/relation/wishlist/:email/:id', async (req, res)=>{
-  const back = await relationModel.deleteFromWhishlist(req.params.email, req.params.id)
-  res.send(back)
-})
-
 
 module.exports = router;

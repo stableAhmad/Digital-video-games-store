@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Login.module.css';
 import { Formik, useFormik } from 'formik';
@@ -6,17 +6,20 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import { Helmet } from "react-helmet";
+import axios from 'axios';
+import { CartContext } from '../../Context/CartContext';
 
 // import toast, { Toaster } from 'react-hot-toast';
 
 export default function Login() {
+  let { saveUserData, cartItemsCount, setCartItemsCount } = useContext(CartContext)
 
   let navigate = useNavigate();
 
   //Validation using Yup
   let validationSchema = Yup.object({
     email: Yup.string().required("email is required").email("email is invalid"),
-    password: Yup.string().required("password is required").matches(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/, "password is inValid"),
+    password: Yup.string().required("password is required").matches(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{2,16}$/, "password is inValid"),
 
   })
 
@@ -36,12 +39,25 @@ export default function Login() {
     });
   }
 
-  function handleLogin(values) {
+  async function handleLogin(values) {
 
-    console.log(formik.values);
-    navigate('/')
-    toastMessage(`Login Succeeded 👍`)
+    let { data } = await axios.post(`http://localhost:4000/app2/${values.email}'`, values).catch((errr) => {
+
+    if(!data){
+       toastMessage(`Login Failed 👎`)
+       console.log(data);
+    }
+    console.log(data);
+    })
+    if (data) {
+      toastMessage(`Login Succeeded 👍`)
+      navigate('/');
+      localStorage.setItem('userToken', values.email)
+      saveUserData(values.email)
+
+    }
   }
+
 
 
   let formik = useFormik({

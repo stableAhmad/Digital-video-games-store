@@ -9,15 +9,22 @@ const PORT_NUMBER = 7000;
 let dbClient = null;
 
 app.use(express.json());
+app.use(cors());
 
+<<<<<<< HEAD
 
 app.use(cors());
 
+=======
+>>>>>>> d2866a7eaa84c2f3e644995b61c8b2edfc076cd3
 app.use(cors({
   origin: '*',
   methods: ['GET', "POST", 'DELETE', "PUT", "PATCH"],
 }));
+<<<<<<< HEAD
 
+=======
+>>>>>>> d2866a7eaa84c2f3e644995b61c8b2edfc076cd3
 async function initializeApp() {
   try {
     dbClient = await mongoDB.connect();

@@ -1,0 +1,39 @@
+- name: Node 14 Application
+  dockerfile: |
+    FROM node:14
+
+    WORKDIR /app
+
+    COPY package*.json ./
+
+    RUN npm install
+
+    COPY . .
+
+    CMD ["npm", "start"]
+
+- name: Node Latest Application
+  dockerfile: |
+    FROM node:latest
+
+    WORKDIR /app
+
+    COPY package*.json ./
+
+    RUN npm install
+
+    COPY . .
+
+    EXPOSE 3000
+
+    CMD ["npm", "start"]
+
+- name: Redis Latest Application
+  dockerfile: |
+    FROM redis:latest
+
+    COPY . .
+
+    EXPOSE 6379
+
+    CMD ["redis-server"]

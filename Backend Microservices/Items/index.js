@@ -4,10 +4,13 @@ const apiRouter = require('./api/routes/router')
 const { itemModelDBClient } = require('./api/models/item-model')
 const { relationDBClient } = require('./api/models/user-item-relation-model')
 const cors = require('cors')
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> d2866a7eaa84c2f3e644995b61c8b2edfc076cd3
 const app = express()
 const PORT_NUMBER = 5000
 
@@ -16,6 +19,12 @@ let connectionState = false
 
 
 app.use(express.json())
+app.use(cors());
+
+app.use(cors({
+	origin: '*',
+	methods: ['GET', "POST", 'DELETE', "PUT", "PATCH"],
+}));
 
 app.use(cors());
 
@@ -24,31 +33,30 @@ app.use(cors({
   methods: ['GET', "POST", 'DELETE', "PUT", "PATCH"],
 }));
 
+async function pre() {
 
-async function pre(){
-	
-	try{
+	try {
 
 		dbClient = await mongoDB.connect()
-		if(dbClient){
+		if (dbClient) {
 			console.log("db connection established")
 			itemModelDBClient.client = dbClient;
 			relationDBClient.client = dbClient
 			app.use(apiRouter)
-			}else{
-				console.log("Database connection failed")
-				app.get('*', (req, res) => {
-  			res.send('Database connection failed')
-					})
+		} else {
+			console.log("Database connection failed")
+			app.get('*', (req, res) => {
+				res.send('Database connection failed')
+			})
 		}
 
-	}catch(err){
+	} catch (err) {
 
 		console.log(err.message)
 		console.log("Database connection failed")
 		app.get('*', (req, res) => {
-  	res.send('Database connection failed')
-  			})
+			res.send('Database connection failed')
+		})
 	}
 }
 
@@ -60,20 +68,20 @@ pre()
 
 
 
-app.listen(PORT_NUMBER, ()=>{
-	console.log("the item service is listening on port "+PORT_NUMBER)
+app.listen(PORT_NUMBER, () => {
+	console.log("the item service is listening on port " + PORT_NUMBER)
 })
 
 
 
 app.on('close', async () => {
-  if(dbClient){
-  	const res = await mongoDB.disconnect()
-  	if(res){
-  		console.log("db connection closed successfully")
-  	}else{
-  		console.log("closing failed")
-  	}
-  }
+	if (dbClient) {
+		const res = await mongoDB.disconnect()
+		if (res) {
+			console.log("db connection closed successfully")
+		} else {
+			console.log("closing failed")
+		}
+	}
 
 })
