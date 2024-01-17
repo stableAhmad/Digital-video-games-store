@@ -52,4 +52,4 @@ Welcome to Level Up, your premier destination for gaming enthusiasts! Level Up i
 
 ### Prototype
 
-![prototype](https://github.com/stableAhmad/Digital-video-games-store/assets/92817153/9c1bc27c-c0ed-4a59-916e-31c694db441c)
+![prototype](https://github.com/stablAhmad/Digital-video-games-store/assets/92817153/9c1bc27c-c0ed-4a59-916e-31c694db441c)
